@@ -1,4 +1,5 @@
 import React from "react";
+import AvatarImage from "../AvatarImage";
 
 function HeroCard({ image, nftName, creatorImage, creator }) {
   return (
@@ -13,9 +14,8 @@ function HeroCard({ image, nftName, creatorImage, creator }) {
       <div className="flex flex-col bg-gray rounded-b-[1rem] h-[6rem] w-[41rem] justify-center items-center p-[1.5rem] gap-[0.5rem]">
         <div className="w-full text-[22px] text-white font-bold">{nftName}</div>
         <div className="flex gap-[0.5rem] justify-start w-full ">
-          <div>
-            <img src={creatorImage} alt="" className="w-[1.5rem] h-[1.5rem]  rounded-full object-cover" />
-          </div>
+
+          <AvatarImage creatorImage={creatorImage} />
           <div className="text-[16px] text-white">{creator}</div>
         </div>
       </div>

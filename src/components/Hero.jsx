@@ -1,6 +1,4 @@
 import React from "react";
-import Button from "../ui/Button";
-import { RoketIcon } from "../icons";
 import HeroCard from "../ui/Hero/HeroCard";
 import HeroLeft from "../ui/Hero/HeroLeft";
 
