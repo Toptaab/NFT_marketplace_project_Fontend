@@ -7,7 +7,7 @@ import Profile from "../ui/Navbar/Profile";
 function Navbar() {
   return (
     <>
-      <div className="w-dvw bg-white   flex items-center justify-between px-[2rem] h-[5rem]">
+      <div className="w-dvw bg-white   flex items-center justify-between px-[2rem] h-[4rem]">
         <Logo />
         <Searchbar />
         <Direction />

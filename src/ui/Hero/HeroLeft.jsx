@@ -1,9 +1,10 @@
 import React from "react";
 import { RoketIcon } from "../../icons";
+import ButtinBig from "../ButtinBig";
 
 function HeroLeft() {
   return (
-    <div className=" flex flex-col gap-5">
+    <div className=" flex flex-col gap-5 flex-1 justify-center p-">
       <div className="text-[67px] w-[31rem] text-gray font-semibold leading-none">
         Discover digital art & Collect NFTs
       </div>
@@ -12,9 +13,13 @@ function HeroLeft() {
         art from more than 20k NFT artists.
       </div>
       <div>
-        <button className="bg-primary text-white px-[4rem] py-[1rem] rounded-[1rem] font-semibold gap-2 flex justify-center items-center ">
-          <RoketIcon /> Get Started
-        </button>
+
+    <ButtinBig>
+    <RoketIcon /> 
+    <div>Get Started</div>
+    </ButtinBig>
+
+
       </div>
       <div className="flex justify-start gap-[5rem]">
         <div>
