@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function Input({name,children}) {
+function Input({name,children,onChange,value, type = "text"}) {
+
+
   return (
-    <div className='border-2 border-gray-400 rounded-2xl p-2 w-full flex items-center gap-2'>
+    <div className='border-2 border-gray rounded-2xl p-2 w-full flex items-center gap-2'>
       {children}
-    <input type="text" className='w-full '  placeholder={name}/>
+    <input type={type} className='w-full' placeholder={name} value={value?.name} name={name} onChange={onChange}/>
     </div>
   )
 }

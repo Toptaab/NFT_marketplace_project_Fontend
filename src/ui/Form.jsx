@@ -1,6 +1,9 @@
+import useFormContext from '../hooks/useFormContext'
 import Button from './Button'
 
-function Form({children, bunttonName,header,subHeader}) {
+function Form({children, bunttonName,header,subHeader, onSummit}) {
+
+   
   return (
     <form className='flex flex-col gap-6 items-center justify-center flex-1'>
         <h1 className='text-[51px] font-semibold'>{header}</h1>
@@ -10,7 +13,7 @@ function Form({children, bunttonName,header,subHeader}) {
         </div>
         <div className='w-[20rem]'>
 
-        <Button name={bunttonName}/>
+        <Button name={bunttonName} onClick={onSummit}/>
         </div>
     </form>
   )

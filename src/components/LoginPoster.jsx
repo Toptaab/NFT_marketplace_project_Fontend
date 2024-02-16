@@ -1,6 +1,8 @@
 import React from "react";
 
+
 function LoginPoster() {
+
   return (
     <div className="flex justify-center flex-1">
       <img

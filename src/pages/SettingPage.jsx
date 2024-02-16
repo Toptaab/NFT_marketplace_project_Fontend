@@ -7,7 +7,6 @@ import Button from "../ui/Button";
 function SettingPage() {
   return (
     <div className="w-dvh">
-      <Navbar />
       <div className="w-full flex flex-col p-[3rem]">
 
 
@@ -58,21 +57,32 @@ function SettingPage() {
                     <PasswordLockIcon/>
                   </Input>
                 </div>
-
-
-
                 <div className="w-[6rem]">
                     <Button name="Save" />
                 </div>
               </div>
             </div>
-
-
-
-            
           </div>
 
-          <div></div>
+          <div>
+          <h5 className="text-[18px] font-semibold">Personal Information</h5>
+          <div className="flex flex-col gap-[1rem] px-[1rem]">
+                <div className="flex flex-col gap-[0.5rem]" >
+                  <label className="text-[14px] font-semibold">Bio</label>
+                <textarea className='border-2 border-gray rounded-2xl p-2 w-full flex items-center gap-2 resize-none' cols="30" rows="10"></textarea>
+                </div>
+                <div className="flex flex-col gap-[0.5rem]" >
+                  <label className="text-[14px] font-semibold">Twitter URL</label>
+                  <Input name="www.twitter.com">
+                  </Input>
+                </div>
+                <div className="w-[6rem]">
+                    <Button name="Save" />
+                </div>
+              </div>
+          </div>
+
+
         </div>
 
 

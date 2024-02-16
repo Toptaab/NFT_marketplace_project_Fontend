@@ -6,7 +6,6 @@ import CardList from "../components/CardList";
 function HomePage() {
   return (
     <div className="w-dvh">
-      <Navbar />
 
       <div className="flex flex-col h-auto w-full p-[3rem] gap-[3rem]">
         <Hero />
