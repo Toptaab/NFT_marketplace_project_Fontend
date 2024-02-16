@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 export const FormContext = createContext();
 
 export default function FormContextProvider({ children }) {
-  const [input, setInput] = useState();
+  const [input, setInput] = useState(null);
   const navigate = useNavigate();
 
   const loginApi = async (input) => {

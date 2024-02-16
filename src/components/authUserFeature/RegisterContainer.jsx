@@ -1,9 +1,9 @@
 import React from "react";
-import LoginPoster from "./LoginPoster";
-import { EmailIcon, PasswordLockIcon, UserRegisterIcon } from "../icons";
-import Input from "../ui/Input";
-import useFormContext from "../hooks/useFormContext";
-import Form from "../ui/Form";
+import LoginPoster from "../LoginPoster";
+import { EmailIcon, PasswordLockIcon, UserRegisterIcon } from "../../icons";
+import Input from "../../ui/Input";
+import useFormContext from "../../hooks/useFormContext";
+import Form from "../../ui/Form";
 
 function RegisterContainer() {
 

@@ -1,8 +1,11 @@
 import React from "react";
 import { RoketIcon } from "../../icons";
 import ButtinBig from "../ButtinBig";
+import { useNavigate } from "react-router-dom";
+
 
 function HeroLeft() {
+  const navigate = useNavigate()
   return (
     <div className=" flex flex-col gap-5 flex-1 justify-center p-">
       <div className="text-[67px] w-[31rem] text-gray font-semibold leading-none">
@@ -14,7 +17,7 @@ function HeroLeft() {
       </div>
       <div>
 
-    <ButtinBig>
+    <ButtinBig onClick={()=>navigate('/register')}>
     <RoketIcon /> 
     <div>Get Started</div>
     </ButtinBig>

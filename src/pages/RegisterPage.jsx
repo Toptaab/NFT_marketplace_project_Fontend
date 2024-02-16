@@ -1,6 +1,6 @@
 import React from "react";
 import FormContextProvider from "../contexts/FormContext";
-import RegisterContainer from "../components/RegisterContainer";
+import RegisterContainer from "../components/authUserFeature/RegisterContainer";
 
 function RegisterPage() {
   return (

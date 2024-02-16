@@ -1,9 +1,9 @@
 import React from "react";
-import LoginPoster from "./LoginPoster";
-import Form from "../ui/Form";
-import { PasswordLockIcon, UserRegisterIcon } from "../icons";
-import Input from "../ui/Input";
-import useFormContext from "../hooks/useFormContext";
+import LoginPoster from "../LoginPoster";
+import Form from "../../ui/Form";
+import { PasswordLockIcon, UserRegisterIcon } from "../../icons";
+import Input from "../../ui/Input";
+import useFormContext from "../../hooks/useFormContext";
 
 function LoginContainer() {
   const {changeHandler, input, summitHandler,loginHandler } = useFormContext()

@@ -1,5 +1,5 @@
 import React from "react";
-import LoginContainer from "../components/LoginContainer";
+import LoginContainer from "../components/authUserFeature/LoginContainer";
 import FormContextProvider from "../contexts/FormContext";
 
 function LoginPage() {
