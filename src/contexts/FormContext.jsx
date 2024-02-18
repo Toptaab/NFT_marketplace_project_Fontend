@@ -7,11 +7,10 @@ export default function FormContextProvider({ children }) {
   const [input, setInput] = useState(null);
   const navigate = useNavigate();
 
-  const loginApi = async (input) => {
+  const loginApi = async ({email,password}) => {
     try {
       const response = await axios.post("/auth/login", {
-        email: input.email,
-        password: input.password
+        email,password
       });
       localStorage.setItem("accessToken", response.data.accessToken);
       navigate("/home");
@@ -20,34 +19,53 @@ export default function FormContextProvider({ children }) {
     }
   };
 
-  const registerApi = async (input) => {
-    console.log(input)
+  const registerApi = async ({userName,email,password,confirmPassword}) => {
     try {
       const response = await axios.post("/auth/register", {
-        userName:input.Username,
-        email: input['Email Address'],
-        password:input.Password,
-        confirmPassword:input['Confirm Password']
+        userName,email,password,confirmPassword
       });
       localStorage.setItem("accessToken", response.data.accessToken);
-      navigate("/home");
+      navigate("/homepage");
     } catch (err) {
       console.log(err);
     }
   };
 
+  const updateUserApi = async (input ) => {
+    input.email?.trim() === "" ? delete input.email : null
+    input.userName?.trim() === "" ? delete input.userName : null
+    try {
+      const accessToken = localStorage.getItem("accessToken")
+      if(!accessToken){navigate("/login")}
+      const response = await axios.patch('/user',{
+        email: input.email,
+        password: input.password,
+        userName: input.userName ,
+        bio : input.bio,
+        twitterUrl: input.twitterUrl
+      },{
+        headers:{
+          Authorization: "Bearer" + " " +  accessToken
+        }
+      })
+      setInput(null)
+      navigate('/profile')
+
+
+    } catch (err) {
+      console.log(err);
+
+    }
+  };
 
   const registerHandler = async (e) => {
     e.preventDefault();
-    registerApi(input)
-  }
-
-
+    registerApi(input);
+  };
 
   const changeHandler = (e) => {
-    console.log(input)
+    console.log(input);
     setInput({ ...input, [e.target.name]: e.target.value });
-
   };
 
   const loginHandler = (e) => {
@@ -55,8 +73,17 @@ export default function FormContextProvider({ children }) {
     loginApi(input);
   };
 
+
+  const updateHandler = (e) => {
+    e.preventDefault();
+    updateUserApi(input);
+  };
+
+
   return (
-    <FormContext.Provider value={{ changeHandler, registerHandler,input, loginHandler }}>
+    <FormContext.Provider
+      value={{ changeHandler, registerHandler, input, loginHandler,updateHandler }}
+    >
       {children}
     </FormContext.Provider>
   );

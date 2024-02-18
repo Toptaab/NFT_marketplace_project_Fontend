@@ -11,7 +11,7 @@ import useFormContext from "../../hooks/useFormContext";
 import TextArea from "../../ui/TextArea";
 
 function SettingContainer() {
-  const { changeHandler, input } = useFormContext();
+  const { changeHandler, input,updateHandler } = useFormContext();
   return (
     <div className="w-full flex flex-col p-[3rem]">
       <div className="flex flex-col gap-[2rem]">
@@ -25,7 +25,11 @@ function SettingContainer() {
             <div className="flex flex-col gap-[1rem] px-[1rem]">
               <div className="flex flex-col gap-[0.5rem]">
                 <label className="text-[14px] font-semibold">User Name</label>
-                <Input onChange={changeHandler} name="Username">
+                <Input
+                  onChange={changeHandler}
+                  name="userName"
+                  placeholder="Username"
+                >
                   <UserRegisterIcon />
                 </Input>
               </div>
@@ -39,7 +43,7 @@ function SettingContainer() {
                 </div>
               </div>
               <div className="w-[6rem]">
-                <Button name="Save" />
+                {/* <Button name="Save" /> */}
               </div>
             </div>
           </div>
@@ -48,18 +52,18 @@ function SettingContainer() {
             <div className="flex flex-col gap-[1rem] px-[1rem]">
               <div className="flex flex-col gap-[0.5rem]">
                 <label className="text-[14px] font-semibold">User Name</label>
-                <Input onChange={changeHandler} name="Email">
+                <Input onChange={changeHandler} name="email">
                   <EmailIcon />
                 </Input>
               </div>
               <div className="flex flex-col gap-[0.5rem]">
                 <label className="text-[14px] font-semibold">Password</label>
-                <Input type="password" onChange={changeHandler} name="Password">
+                <Input type="password" onChange={changeHandler} name="password">
                   <PasswordLockIcon />
                 </Input>
               </div>
               <div className="w-[6rem]">
-                <Button name="Save" />
+                {/* <Button name="Save" /> */}
               </div>
             </div>
           </div>
@@ -74,10 +78,14 @@ function SettingContainer() {
             </div>
             <div className="flex flex-col gap-[0.5rem]">
               <label className="text-[14px] font-semibold">Twitter URL</label>
-              <Input onChange={changeHandler} name="www.twitter.com"></Input>
+              <Input
+                onChange={changeHandler}
+                name="twitterUrl"
+                placeholder="www.twitter.com"
+              ></Input>
             </div>
             <div className="w-[6rem]">
-              <Button name="Save" />
+              <Button name="Save" onClick={updateHandler} />
             </div>
           </div>
         </div>

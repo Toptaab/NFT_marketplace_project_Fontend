@@ -23,24 +23,27 @@ const {changeHandler,registerHandler} = useFormContext()
         >
           <Input 
           onChange={changeHandler}
-          name="Username">
+          name="userName"
+          placeholder="Username">
             <UserRegisterIcon />
           </Input>
           <Input 
           onChange={changeHandler}
-          name="Email Address">
+          name="email"
+          placeholder="Email Address">
             <EmailIcon />
           </Input>
           <Input 
           onChange={changeHandler}
           type="password"
-          name="Password">
+          name="password">
             <PasswordLockIcon />
           </Input>
           <Input
           onChange={changeHandler}
           type="password"
-          name="Confirm Password">
+          name="confirmPassword"
+          placeholder="Confirm Password">
             <PasswordLockIcon />
           </Input>
           <div>
