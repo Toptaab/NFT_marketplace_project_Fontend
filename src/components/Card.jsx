@@ -1,12 +1,17 @@
 import React from "react";
 import Button from "../ui/Button";
 import AvatarImage from "../ui/AvatarImage";
+import { useNavigate } from "react-router-dom";
 
 function Card({ creatorImage, creator }) {
+const navigate = useNavigate()
+
   return (
     <div className="w-[17rem] border-[1px] border-gray flex flex-col items-center p-[1rem] h-[26rem] rounded-[1.5rem] gap-[1rem]">
       <div className="w-[15rem] h-[14rem] ">
         <img
+          role="button"
+          onClick={()=> navigate('/asset/1')}
           className="w-full h-full object-cover rounded-[1rem]"
           src="https://cdnb.artstation.com/p/assets/images/images/050/231/675/medium/dylan-jobe-astronaut-07.jpg?1654365846"
           alt=""
@@ -26,7 +31,7 @@ function Card({ creatorImage, creator }) {
         </div>
       </div>
       <div className="w-[15rem] flex justify-center">
-        <Button name="Buy" />
+        <Button name="Buy" onClick={(e) => navigate('/asset/1')} />
       </div>
     </div>
   );

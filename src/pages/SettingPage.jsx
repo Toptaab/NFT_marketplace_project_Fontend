@@ -4,9 +4,8 @@ import FormContextProvider from "../contexts/FormContext";
 
 function SettingPage() {
   return (
-    <div className="w-dvh">
+    <div className="w-dvw">
       <FormContextProvider>
-
       <SettingContainer/>
       </FormContextProvider>
     </div>

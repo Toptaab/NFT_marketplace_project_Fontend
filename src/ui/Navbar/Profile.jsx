@@ -21,7 +21,7 @@ function Profile() {
       </div>
 
       <div>
-        <a href="#">
+        <a href="/profile">
           <UserIcon />
         </a>
       </div>

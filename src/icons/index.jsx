@@ -602,7 +602,7 @@ export function RoketIcon() {
 export function ImageUploadIcon() {
   return (
     <svg
-    width="5rem"
+      width="5rem"
       viewBox="0 0 32 32"
       version="1.1"
       xmlns="http://www.w3.org/2000/svg"
@@ -645,6 +645,56 @@ export function ImageUploadIcon() {
             </path>{" "}
           </g>{" "}
         </g>{" "}
+      </g>
+    </svg>
+  );
+}
+
+export function InformationIcon() {
+  return (
+    <svg
+      fill="#737376"
+      width="1rem"
+      viewBox="-1 0 19 19"
+      xmlns="http://www.w3.org/2000/svg"
+      class="cf-icon-svg"
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        <path d="M16.417 9.583A7.917 7.917 0 1 1 8.5 1.666a7.917 7.917 0 0 1 7.917 7.917zM9.64 5.78a1.136 1.136 0 1 0-1.136 1.135A1.136 1.136 0 0 0 9.64 5.781zm-.344 2.884a.792.792 0 1 0-1.583 0v5.203a.792.792 0 0 0 1.583 0z"></path>
+      </g>
+    </svg>
+  );
+}
+
+export function AttributeIcon() {
+  return (
+    <svg
+    width="1.5rem"
+      viewBox="0 0 24 24"
+      fill="#737376"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+      <g
+        id="SVGRepo_tracerCarrier"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      ></g>
+      <g id="SVGRepo_iconCarrier">
+        {" "}
+        <path
+          d="M11 6L21 6.00072M11 12L21 12.0007M11 18L21 18.0007M3 11.9444L4.53846 13.5L8 10M3 5.94444L4.53846 7.5L8 4M4.5 18H4.51M5 18C5 18.2761 4.77614 18.5 4.5 18.5C4.22386 18.5 4 18.2761 4 18C4 17.7239 4.22386 17.5 4.5 17.5C4.77614 17.5 5 17.7239 5 18Z"
+          stroke="#000000"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        ></path>{" "}
       </g>
     </svg>
   );

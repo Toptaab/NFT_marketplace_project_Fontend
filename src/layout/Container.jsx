@@ -5,8 +5,8 @@ import CreateCollectionModal from "../components/createCollectionFeature/CreateC
 export default function Container() {
   return (
     <>
-      <CreateCollectionModal /> 
       <Navbar />
+      {/* <CreateCollectionModal />  */}
       <Outlet />
     </>
   );
