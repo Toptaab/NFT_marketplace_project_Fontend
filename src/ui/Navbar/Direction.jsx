@@ -2,6 +2,7 @@ import React from "react";
 
 
 function Direction() {
+  const userId = localStorage.getItem('userId')
 
   return (
     <div className="font-bold text-[15px] flex justify-between items-center gap-4 w-[16rem]">
@@ -12,7 +13,7 @@ function Direction() {
         <a href="/create">Create</a>
       </div>
       <div>
-        <a href="/profile">My Assets</a>
+        <a href={`/profile/${userId}`}>My Assets</a>
       </div>
     </div>
   );

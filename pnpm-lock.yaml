@@ -17,6 +17,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.22.0
     version: 6.22.0(react-dom@18.2.0)(react@18.2.0)
+  truncate-middle:
+    specifier: ^1.0.6
+    version: 1.0.6
 
 devDependencies:
   '@types/react':
@@ -2858,6 +2861,10 @@ packages:
     dependencies:
       is-number: 7.0.0
     dev: true
+
+  /truncate-middle@1.0.6:
+    resolution: {integrity: sha512-oJLDTdHAk27V+JUUu1vKYezKehx/tECV0vnJ1e8JV/rvre5oLoFMaCLP53ZwiPsw4ZIJzyLoZr/TKQABnaNF6A==}
+    dev: false
 
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}

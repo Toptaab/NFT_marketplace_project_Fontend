@@ -13,6 +13,8 @@ export default function FormContextProvider({ children }) {
         email,password
       });
       localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("userId", response.data.id);
+      
       navigate("/home");
     } catch (err) {
       console.log(err);
@@ -25,6 +27,7 @@ export default function FormContextProvider({ children }) {
         userName,email,password,confirmPassword
       });
       localStorage.setItem("accessToken", response.data.accessToken);
+      localStorage.setItem("userId", response.data.id);
       navigate("/homepage");
     } catch (err) {
       console.log(err);
@@ -64,7 +67,7 @@ export default function FormContextProvider({ children }) {
   };
 
   const changeHandler = (e) => {
-    console.log(input);
+    // console.log(input);
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 

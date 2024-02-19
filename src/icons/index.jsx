@@ -657,7 +657,7 @@ export function InformationIcon() {
       width="1rem"
       viewBox="-1 0 19 19"
       xmlns="http://www.w3.org/2000/svg"
-      class="cf-icon-svg"
+      className="cf-icon-svg"
     >
       <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
       <g

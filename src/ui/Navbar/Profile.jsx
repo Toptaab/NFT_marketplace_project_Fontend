@@ -2,7 +2,11 @@ import React from "react";
 import { LogOut, SettingIcon, UserIcon } from "../../icons";
 import { useNavigate } from "react-router-dom";
 
+
 function Profile() {
+const userId = localStorage.getItem('userId')
+
+
   const navigate = useNavigate()
   return (
     <div className="flex justify-center items-center gap-[1rem] w-[8rem]">
@@ -19,9 +23,8 @@ function Profile() {
           <LogOut />
         </a>
       </div>
-
       <div>
-        <a href="/profile">
+        <a href={`/profile/${userId}`}>
           <UserIcon />
         </a>
       </div>
