@@ -1,6 +1,6 @@
 import React from "react";
-import HeroCard from "../ui/Hero/HeroCard";
-import HeroLeft from "../ui/Hero/HeroLeft";
+import HeroCard from "../../ui/Hero/HeroCard";
+import HeroLeft from "../../ui/Hero/HeroLeft";
 
 function Hero() {
   return (

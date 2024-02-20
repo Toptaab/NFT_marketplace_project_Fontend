@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import Input from "../../ui/Input";
 import Button from "../../ui/Button";
 import { ImageUploadIcon } from "../../icons";
+import useCollectionContext from "./hook/useCollectionContext";
 
 function CreateCollectionContainer() {
   const [traits, settraits] = useState([{}]);
+
+  const {handelModal} = useCollectionContext()
 
   const traitsHandleChange = (index, value) => {
     console.log(traits);
@@ -24,7 +27,7 @@ function CreateCollectionContainer() {
         <div className="flex flex-col justify-between items-center p-[2rem] w-full gap-[2rem]">
           <div className="text-[18px] font-semibold flex justify-between w-full">
             <p className="font-semibold">Collection ERC-721</p>
-            <div className="font-semibold" role="button">x</div>
+            <div className="font-semibold" role="button" onClick={handelModal}>x</div>
           </div>
           <div className="flex gap-[2rem] px-[3rem] items-center">
             <div>

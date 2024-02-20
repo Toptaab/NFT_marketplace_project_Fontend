@@ -1,14 +1,14 @@
 import React from "react";
-import Hero from "../components/Hero";
-import CardList from "../components/CardList";
+import HomeContainer from "../components/homeFeature/HomeContainer";
+import HomeContextProvider from "../components/homeFeature/context/HomeContext";
 
 function HomePage() {
   return (
     <div className="w-dvw">
-      <div className="flex flex-col h-auto w-full p-[3rem] gap-[3rem]">
-        <Hero />
-        <CardList />
-      </div>
+      <HomeContextProvider>
+
+        <HomeContainer/>
+      </HomeContextProvider>
     </div>
   );
 }

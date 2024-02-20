@@ -2,8 +2,8 @@ import React from "react";
 import Card from "./Card";
 import BtnTypeSelection from "../ui/Hero/BtnTypeSelection";
 
-function CardList({ userObj }) {
-  console.log("this cart", userObj);
+function CardList({ arrayCollection }) {
+
 
   return (
     <div className="w-full flex flex-col gap-[2rem]">
@@ -15,7 +15,7 @@ function CardList({ userObj }) {
         </div>
       </div>
       <div className="flex flex-wrap align-top justify-center gap-[4rem] h-[50rem] overflow-auto">
-        {userObj.Collections.map((colValue) =>
+        {arrayCollection?.map((colValue) =>
           colValue.Nfts.map((nftValue) => (
             <Card
               key={nftValue.id}
@@ -28,6 +28,7 @@ function CardList({ userObj }) {
             />
           ))
         )}
+
 
       </div>
     </div>

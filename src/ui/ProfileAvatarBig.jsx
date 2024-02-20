@@ -1,8 +1,10 @@
 import React from 'react'
 
-function ProfileAvatarBig({image}) {
+const avartar = "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iMTMycHgiIGhlaWdodD0iMTMycHgiIHZpZXdCb3g9IjAgMCA4MCA4MCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj4KICA8ZGVmcz4KICAgIDxsaW5lYXJHcmFkaWVudCB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIiBpZD0iMTA5MDI1NDQyMzExMyI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9InJnYigwLCAyNTUsIDExNSkiIG9mZnNldD0iMCUiPjwvc3RvcD4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0icmdiKDExNSwgMCwgMjU1KSIgb2Zmc2V0PSIxMDAlIj48L3N0b3A+CiAgICA8L2xpbmVhckdyYWRpZW50PgogIDwvZGVmcz4KICA8ZyBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KICAgIDxyZWN0IGlkPSJSZWN0YW5nbGUiIGZpbGw9InVybCgjMTA5MDI1NDQyMzExMykiIHg9IjAiIHk9IjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCI+PC9yZWN0PgogIDwvZz4KPC9zdmc+"
+
+function ProfileAvatarBig({image,onClick }) {
   return (
-    <img className="w-[3rem] h-[3rem]  rounded-full object-cover" src={image} alt="" />
+    <img role="button" onClick={onClick} className="w-[3rem] h-[3rem]  rounded-full object-cover" src={image || avartar } alt="" />
   )
 }
 

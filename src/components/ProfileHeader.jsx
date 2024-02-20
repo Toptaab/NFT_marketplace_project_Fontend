@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../ui/Button";
 import ProfileAvatarBig from "../ui/ProfileAvatarBig";
-import useProfileContext from "./profileFeature/hook/userProfileContext";
-import Spinner from "../ui/Spinner";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { PlusIcon } from "../icons";
-
-
+import CreateCollectionModal from '../components/createCollectionFeature/CreateCollectionModal'
+import useCollectionContext from './createCollectionFeature/hook/useCollectionContext'
 
 function ProfileHeader({userObj}) {
+
   const navigate = useNavigate()
+  const {handelModal,openModal} = useCollectionContext()
+
+  console.log(openModal)
 
  
 
 
   return (
     <div className="flex">
+      {openModal? <CreateCollectionModal /> : null}
       <div className="w-full flex flex-col gap-[2rem]">
         <div className="flex items-center justify-start gap-[1rem]">
-          <ProfileAvatarBig image="https://images.nightcafe.studio/jobs/Hb1s6w3L4ZQ5As9FJCGa/Hb1s6w3L4ZQ5As9FJCGa--1--s4jxa.jpg?tr=w-1080,c-at_max" />
+          <ProfileAvatarBig image={userObj.image} onClick={()=> navigate('/setting')} />
           <h1 className="text-[34px] font-bold">{userObj.userName}</h1>
         </div>
 
@@ -57,7 +60,7 @@ function ProfileHeader({userObj}) {
       </div>
       <div className="flex justify-end w-full gap-[1rem]">
         <div className="w-[30%]">
-          <Button secondary={true} name="Create Collection">
+          <Button secondary={true} name="Create Collection" onClick={handelModal}>
             <PlusIcon />
           </Button>
         </div>
