@@ -3,7 +3,7 @@ import Button from "../ui/Button";
 import AvatarImage from "../ui/AvatarImage";
 import { useNavigate } from "react-router-dom";
 
-function Card({ creatorImage, creator }) {
+function Card({ nftId,nftImage, nftName,collectionImage,CollectionName,price }) {
 const navigate = useNavigate()
 
   return (
@@ -11,27 +11,28 @@ const navigate = useNavigate()
       <div className="w-[15rem] h-[14rem] ">
         <img
           role="button"
-          onClick={()=> navigate('/asset/1')}
+          onClick={()=> navigate(`/asset/${nftId}`)}
           className="w-full h-full object-cover rounded-[1rem]"
-          src="https://cdnb.artstation.com/p/assets/images/images/050/231/675/medium/dylan-jobe-astronaut-07.jpg?1654365846"
-          alt=""
+          src={nftImage}
+          alt="NFT"
         />
       </div>
       <div className="w-full flex flex-col justify-between gap-[1rem]">
-        <div className="text-[18px] font-bold">Space Walker</div>
-        <div className="flex">
-          <div className="flex flex-1 flex-col items-start font-semibold">
-            <AvatarImage creatorImage={creatorImage} />
-            <div>{creator}</div>
+        <div className="text-[18px] font-bold">{nftName}</div>
+        <div className="flex items-center">
+          <div className="flex flex-1  items-center justify-start font-semibold gap-[0.5rem]">
+            <AvatarImage collectionImage={collectionImage} />
+            <div>{CollectionName}</div>
           </div>
           <div className="flex flex-col flex-1 items-end font-semibold">
             <div>price</div>
-            <div className="text-primary">55.55 ETH</div>
+            <div className="text-primary">{price || "Not on sales"}</div>
           </div>
         </div>
       </div>
       <div className="w-[15rem] flex justify-center">
-        <Button name="Buy" onClick={(e) => navigate('/asset/1')} />
+        {price? <Button name="Buy" onClick={(e) => navigate(`/asset/${nftId}`)} /> : <Button name="Not Onsale" />}
+        
       </div>
     </div>
   );

@@ -4,17 +4,14 @@ import ProfileAvatarBig from "../ui/ProfileAvatarBig";
 import useProfileContext from "./profileFeature/hook/userProfileContext";
 import Spinner from "../ui/Spinner";
 import { useNavigate } from "react-router-dom";
+import { PlusIcon } from "../icons";
 
 
 
-function ProfileHeader() {
-  const { userObj, loading } = useProfileContext();
+function ProfileHeader({userObj}) {
   const navigate = useNavigate()
-  console.log(userObj)
 
-  if(loading){
-    return <Spinner />
-  }
+ 
 
 
   return (
@@ -22,25 +19,28 @@ function ProfileHeader() {
       <div className="w-full flex flex-col gap-[2rem]">
         <div className="flex items-center justify-start gap-[1rem]">
           <ProfileAvatarBig image="https://images.nightcafe.studio/jobs/Hb1s6w3L4ZQ5As9FJCGa/Hb1s6w3L4ZQ5As9FJCGa--1--s4jxa.jpg?tr=w-1080,c-at_max" />
-          <h1 className="text-[34px] font-bold">{userObj?.userName}</h1>
+          <h1 className="text-[34px] font-bold">{userObj.userName}</h1>
         </div>
 
         {/*  */}
         <div className="flex justify-start gap-[5rem]">
           <div>
-            <div className="text-[28px] font-bold">240k+</div>
+            <div className="text-[28px] font-bold text-primary">{userObj.sellers.length + userObj.buyers.length}20K+</div>
             <div className="text-[24px] text-gray">Volume</div>
           </div>
           <div>
-            <div className=" text-[28px] font-bold">100k+</div>
+            <div className=" text-[28px] font-bold text-primary">{userObj.Nfts.length}0K+</div>
             <div className="text-[24px] text-gray">NFTs</div>
           </div>
           <div>
-            <div className=" text-[28px] font-bold">240k+</div>
+            <div className=" text-[28px] font-bold text-primary">{userObj.followers.length}0K+</div>
             <div className="text-[24px] text-gray">Follwers</div>
           </div>
           <div>
-            <div className=" text-[28px] font-bold">240k+</div>
+            <div className="flex gap-[0.5rem] items-baseline">
+            <div className=" text-[28px] font-bold text-primary">{userObj.Wallets[0].Cryptos[0].balance} </div>
+            <div className=" text-[20px] font-bold text-pri">{userObj.Wallets[0].Cryptos[0].chain.currencySymbol}</div>
+            </div>
             <div className="text-[24px] text-gray">Balance</div>
           </div>
         </div>
@@ -57,9 +57,11 @@ function ProfileHeader() {
       </div>
       <div className="flex justify-end w-full gap-[1rem]">
         <div className="w-[30%]">
-          <Button secondary={true} name="Create Collection"></Button>
+          <Button secondary={true} name="Create Collection">
+            <PlusIcon />
+          </Button>
         </div>
-        <div className="w-[20%] ">
+        <div className="max-w-[8rem] flex-1">
           <button className="bg-primary text-wrap p-[0.5rem] rounded-xl text-white font-semibold w-full" >{userObj.Wallets[0].walletAddress}</button>
         </div>
       </div>

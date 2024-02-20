@@ -1,19 +1,26 @@
 import React from 'react'
 import CardList from '../CardList'
 import ProfileHeader from '../ProfileHeader'
+import useProfileContext from './hook/userProfileContext';
+import Spinner from '../../ui/Spinner';
 
 
 function ProfileContainer() {
+  const { userObj, loading } = useProfileContext();
 
 
+
+  if(loading){
+    return <Spinner />
+  }
 
   return (
     <div className='w-full flex flex-col gap-[2rem] p-[3rem]'>
         <div>
-            <ProfileHeader/>
+            <ProfileHeader userObj={userObj}/>
         </div>
         <div>
-            <CardList />
+            <CardList userObj={userObj}/>
         </div>
     </div>
   )
