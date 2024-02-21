@@ -12,7 +12,7 @@ if(loading){return <Spinner/> }
   return (
     <div className="flex flex-col h-auto w-full p-[3rem] gap-[3rem]">
       <Hero />
-      <CardList arrayCollection={arrayCollection}/>
+      <CardList name="Trending NFTs" arrayCollection={arrayCollection}/>
     </div>
   );
 }

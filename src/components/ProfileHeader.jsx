@@ -28,28 +28,28 @@ function ProfileHeader({ userObj,status,relationShip }) {
         <div className="flex justify-start gap-[5rem]">
           <div>
             <div className="text-[28px] font-bold text-primary">
-              {userObj.sellers.length + userObj.buyers.length}20K+
+              {userObj.sellers.length + userObj.buyers.length}
             </div>
             <div className="text-[24px] text-gray">Volume</div>
           </div>
           <div>
             <div className=" text-[28px] font-bold text-primary">
-              {userObj.Nfts.length}0K+
+              {userObj.Nfts.length}
             </div>
             <div className="text-[24px] text-gray">NFTs</div>
           </div>
           <div>
             <div className=" text-[28px] font-bold text-primary">
-              {userObj.Relationship.length}0K+
+              {userObj.Relationship.length}
             </div>
             <div className="text-[24px] text-gray">Follwers</div>
           </div>
           <div>
-            <div className="flex gap-[0.5rem] items-baseline">
+            <div className="flex  items-baseline">
               <div className=" text-[28px] font-bold text-primary">
                 {userObj.Wallets[0].Cryptos[0].balance}{" "}
               </div>
-              <div className=" text-[20px] font-bold text-pri">
+              <div className=" text-[20px] font-bold text-primary">
                 {userObj.Wallets[0].Cryptos[0].chain.currencySymbol}
               </div>
             </div>

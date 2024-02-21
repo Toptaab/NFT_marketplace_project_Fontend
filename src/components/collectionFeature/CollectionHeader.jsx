@@ -20,7 +20,7 @@ const navigate = useNavigate()
         {/*  */}
         <div className="flex justify-start gap-[5rem]">
           <div>
-            <div className="text-[24px] font-bold text-primary">{collectionObj.history.length}0K+</div>
+            <div className="text-[24px] font-bold text-primary">{collectionObj.history.length}</div>
             <div className="text-[20px] text-gray">Volume</div>
           </div>
           <div>
@@ -28,7 +28,7 @@ const navigate = useNavigate()
             <div className="text-[20px] text-gray">Totals Item</div>
           </div>
           <div>
-            <div className="text-[24px] font-bold text-primary">{collectionObj.history[0].price}</div>
+            <div className={` font-bold ${collectionObj?.history[0]?.price ? "text-primary text-[24px]"  : "text-gray text-[18px]"}`}>{collectionObj?.history[0]?.price || "No record"}</div>
             <div className="text-[20px] text-gray">Highest Price</div>
           </div>
           <div>

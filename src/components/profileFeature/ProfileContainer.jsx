@@ -22,7 +22,7 @@ function ProfileContainer() {
             <ProfileHeader userObj={userObj} relationShip={relationShip} status={status} />
         </div>
         <div>
-            <CardList arrayCollection={userObj.Collections}/>
+            <CardList name="My Assets" arrayCollection={userObj.Collections}/>
         </div>
     </div>
   )
