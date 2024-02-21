@@ -1,16 +1,16 @@
 import React from "react";
 import ProfileContainer from "../components/profileFeature/ProfileContainer";
 import ProfileContextProvider from "../components/profileFeature/context/ProfileContext";
-import CollectionContextProvider from "../components/createCollectionFeature/contexts/CollectionContext";
+import CreateCollectionContextProvider from "../components/createCollectionFeature/contexts/CreateCollectionContext";
 
 function ProfilePage() {
   return (
     <div className="w-dvw">
-      <CollectionContextProvider>
+      <CreateCollectionContextProvider>
         <ProfileContextProvider>
           <ProfileContainer />
         </ProfileContextProvider>
-      </CollectionContextProvider>
+      </CreateCollectionContextProvider>
     </div>
   );
 }

@@ -13,6 +13,7 @@ import ProfilePage from "../pages/ProfilePage";
 import CreatePage from "../pages/CreatePage";
 import ExplorePage from "../pages/ExplorePage";
 import AssetPage from "../pages/AssetPage";
+import CollectionPage from "../pages/CollectionPage";
 
 const router = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: '/asset/:assetId',
         element: <AssetPage/>
+      },
+      {
+        path: '/collection/:collectionId',
+        element: <CollectionPage/>
       },
       {
         path: "*",

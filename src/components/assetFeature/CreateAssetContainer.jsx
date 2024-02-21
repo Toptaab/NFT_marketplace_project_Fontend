@@ -2,14 +2,14 @@ import React, { useRef, useState } from "react";
 import Card from "../Card";
 import Input from "../../ui/Input";
 import Button from "../../ui/Button";
-import useCollectionContext from "../createCollectionFeature/hook/useCollectionContext";
+import useCreateCollectionContext from "../createCollectionFeature/hook/useCreateCollectionContext";
 import CreateCollectionModal from "../createCollectionFeature/CreateCollectionModal";
 import useAssetContext from "./hook/useAssetContext";
 import Spinner from "../../ui/Spinner";
 
 function CreateAssetContainer() {
   const reader = new FileReader()
-  const { openModal, handelModal } = useCollectionContext();
+  const { openModal, handelModal } = useCreateCollectionContext();
   const {
     handleUploadImage,
     loading,

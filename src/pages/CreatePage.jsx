@@ -1,16 +1,16 @@
 import React from "react";
 import CreateAssetContainer from "../components/assetFeature/CreateAssetContainer";
-import CollectionContextProvider from "../components/createCollectionFeature/contexts/CollectionContext";
+import CreateCollectionContextProvider from "../components/createCollectionFeature/contexts/CreateCollectionContext";
 import AssetContextProvider from "../components/assetFeature/context/AssetContext";
 
 function CreatePage() {
   return (
     <div className="w-dvw">
-      <CollectionContextProvider>
+      <CreateCollectionContextProvider>
         <AssetContextProvider>
           <CreateAssetContainer />
         </AssetContextProvider>
-      </CollectionContextProvider>
+      </CreateCollectionContextProvider>
     </div>
   );
 }

@@ -3,8 +3,9 @@ import useProfileContext from "./hook/userProfileContext";
 import Button from "../../ui/Button";
 import { PlusIcon } from "../../icons";
 
-function StatusButton() {
-  const { relationShip, handelModal,userObj,status } = useProfileContext();
+function StatusButton({handelModal}) {
+  const { relationShip,userObj,status } = useProfileContext();
+
 
 
   if(relationShip === status.ME){

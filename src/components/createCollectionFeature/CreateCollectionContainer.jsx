@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import Input from "../../ui/Input";
 import Button from "../../ui/Button";
 import { ImageUploadIcon } from "../../icons";
-import useCollectionContext from "./hook/useCollectionContext";
+import useCreateCollectionContext from "./hook/useCreateCollectionContext";
 
 function CreateCollectionContainer() {
   const {
@@ -13,7 +13,7 @@ function CreateCollectionContainer() {
     image,
     handleUploadImage,
     handleSummit,
-  } = useCollectionContext();
+  } = useCreateCollectionContext();
   const fileEl = useRef(null);
 
 

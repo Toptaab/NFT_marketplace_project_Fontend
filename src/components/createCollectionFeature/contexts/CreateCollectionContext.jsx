@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export const CollectionContext = createContext();
+export const CreateCollectionContext = createContext();
 
 export default function CollectionContextProvider({ children }) {
   const [openModal, setOpenModal] = useState(false);
@@ -93,7 +93,7 @@ export default function CollectionContextProvider({ children }) {
   };
 
   return (
-    <CollectionContext.Provider
+    <CreateCollectionContext.Provider
       value={{
         handelModal,
         openModal,
@@ -107,6 +107,6 @@ export default function CollectionContextProvider({ children }) {
       }}
     >
       {children}
-    </CollectionContext.Provider>
+    </CreateCollectionContext.Provider>
   );
 }

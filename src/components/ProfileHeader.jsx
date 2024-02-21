@@ -2,12 +2,12 @@ import React from "react";
 import ProfileAvatarBig from "../ui/ProfileAvatarBig";
 import { useNavigate } from "react-router-dom";
 import CreateCollectionModal from "../components/createCollectionFeature/CreateCollectionModal";
-import useCollectionContext from "./createCollectionFeature/hook/useCollectionContext";
+import useCreateCollectionContext from "./createCollectionFeature/hook/useCreateCollectionContext";
 import StatusButton from "./profileFeature/StatusButton";
 
 function ProfileHeader({ userObj,status,relationShip }) {
   const navigate = useNavigate();
-  const { openModal } = useCollectionContext();
+  const { openModal,handelModal } = useCreateCollectionContext();
   
 
 
@@ -82,7 +82,7 @@ function ProfileHeader({ userObj,status,relationShip }) {
           </p>
         </div>
       </div>
-      <StatusButton />
+      <StatusButton handelModal={handelModal} />
     </div>
   );
 }
