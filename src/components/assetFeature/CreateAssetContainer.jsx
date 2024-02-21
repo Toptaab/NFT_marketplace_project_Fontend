@@ -35,6 +35,7 @@ function CreateAssetContainer() {
   }
 
 
+
   return (
     <div className="w-full p-[3rem] flex flex-col justify-start items-center gap-[2rem]">
       {openModal ? <CreateCollectionModal /> : null}

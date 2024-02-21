@@ -1,10 +1,11 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export const AssetContext = createContext();
 
 export default function AssetContextProvider({ children }) {
+  const navigate = useNavigate()
   const accessToken = localStorage.getItem("accessToken");
   const [loading, setLoading] = useState(true);
   const [asset, setAsset] = useState({});
@@ -15,6 +16,8 @@ export default function AssetContextProvider({ children }) {
   const [traitAttributes, setTraitAttributes] = useState([
     { name: "", traitId: "" },
   ]);
+
+
 
   const getNft = async () => {
     try {
@@ -46,6 +49,7 @@ export default function AssetContextProvider({ children }) {
 
   const createNft = async (input, traitAttributes) => {
     try {
+      setLoading(true)
       const formData = new FormData();
       if (image) {
         formData.append("image", image);
@@ -66,7 +70,7 @@ export default function AssetContextProvider({ children }) {
         }
       );
 
-      uploadImageRespose = await axios.patch(
+      const uploadImageRespose = await axios.patch(
         `/asset/${response.data.id}/image`,
         formData,
         {
@@ -75,6 +79,11 @@ export default function AssetContextProvider({ children }) {
           },
         }
       );
+      
+      console.log(uploadImageRespose.data)
+      setLoading(false)
+      navigate(`/asset/${response.data.id}`)
+
     } catch (err) {
       console.log(err);
     }

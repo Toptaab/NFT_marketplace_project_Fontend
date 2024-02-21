@@ -16,7 +16,6 @@ function CreateCollectionContainer() {
   } = useCollectionContext();
   const fileEl = useRef(null);
 
-  console.log(image)
 
   return (
     <div>

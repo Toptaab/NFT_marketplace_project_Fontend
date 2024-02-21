@@ -10,8 +10,9 @@ export default function CollectionContextProvider({ children }) {
   const [traits, settraits] = useState([{}]);
   const [image, setImage] = useState();
   const accessToken = localStorage.getItem("accessToken");
-
   const navigate = useNavigate();
+
+  
 
   const createCollectionApi = async (input, traits) => {
     try {
@@ -34,9 +35,6 @@ export default function CollectionContextProvider({ children }) {
             },
           }
         );
-
-        console.log(response.data);
-
         if (image) {
           formData.append("image", image);
         }
@@ -49,24 +47,27 @@ export default function CollectionContextProvider({ children }) {
             },
           }
         );
-
-        console.log(uploadImageResponse.data);
-
-        navigate("/home");
+        console.log(uploadImageResponse.data)
       }
+
+
+
     } catch (err) {
       console.log(err);
     }
   };
 
   const traitsHandleChange = (index, value) => {
-    console.log(traits);
     const newTraitsArray = [...traits];
     newTraitsArray[index].name = value;
     settraits(newTraitsArray);
 
     if (index === traits.length - 1 && value.trim() !== "") {
       settraits([...newTraitsArray, {}]);
+    }
+
+    if (index === traits.length -2 && value.trim() === "" ){
+      settraits(traits.slice(0, traits.length - 1));
     }
   };
 
@@ -78,6 +79,8 @@ export default function CollectionContextProvider({ children }) {
   const handelModal = () => {
     setOpenModal(!openModal);
     settraits([{}]);
+    setImage(null)
+    setInput({})
   };
 
   const handleUploadImage = (e) => {
