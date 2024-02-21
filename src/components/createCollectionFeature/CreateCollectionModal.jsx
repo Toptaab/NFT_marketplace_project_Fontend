@@ -1,13 +1,14 @@
-import React from 'react'
-import CreateCollectionContainer from './CreateCollectionContainer'
+import React from "react";
+import CreateCollectionContainer from "./CreateCollectionContainer";
 
 
 function CreateCollectionModal() {
   return (
-    <div >
-      <CreateCollectionContainer />
+    <div>
+
+        <CreateCollectionContainer />
     </div>
-  )
+  );
 }
 
-export default CreateCollectionModal
+export default CreateCollectionModal;
