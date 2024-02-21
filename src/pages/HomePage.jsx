@@ -6,8 +6,7 @@ function HomePage() {
   return (
     <div className="w-dvw">
       <HomeContextProvider>
-
-        <HomeContainer/>
+        <HomeContainer />
       </HomeContextProvider>
     </div>
   );

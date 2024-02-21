@@ -1,12 +1,39 @@
-import { createContext } from "react";
+import axios from "axios";
+import { createContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
+export const CollectionContext = createContext();
 
-export const CollectionContext = createContext()
+export default function CollectionContextProvider({ children }) {
+  const accessToken = localStorage.getItem("accessToken");
+  const [collectionObj, setCollectionObj] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { collectionId } = useParams();
 
-export default function CollectionContextProvider({children}) {
+  const collectionApi = async () => {
+    try {
+        setLoading(true)
+      const response = await axios.get(`/collection/${collectionId}`, {
+        headers: {
+          Authorization: "Bearer" + " " + accessToken,
+        },
+      });
 
+      setCollectionObj(response.data);
 
+      setLoading(false)
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
+  useEffect(() => {
+    collectionApi();
+  }, []);
 
-    return <CollectionContext.Provider value={{}}>{children}</CollectionContext.Provider>
+  return (
+    <CollectionContext.Provider value={{ collectionObj,loading }}>
+      {children}
+    </CollectionContext.Provider>
+  );
 }

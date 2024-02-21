@@ -2,9 +2,13 @@ import React from "react";
 import { RoketIcon } from "../../icons";
 import ButtinBig from "../ButtinBig";
 import { useNavigate } from "react-router-dom";
+import useHomeContext from "../../components/homeFeature/hook/useHomeContext";
 
 
 function HeroLeft() {
+  const {arrayCollection,summarize} = useHomeContext()
+console.log(summarize)
+
   const navigate = useNavigate()
   return (
     <div className=" flex flex-col gap-5 flex-1 justify-center p-">
@@ -26,15 +30,15 @@ function HeroLeft() {
       </div>
       <div className="flex justify-start gap-[5rem]">
         <div>
-          <div className="text-primary text-[28px] font-bold">240k+</div>
+          <div className="text-primary text-[28px] font-bold">{summarize.totalSale}</div>
           <div className="text-[24px] text-gray">Total Sale</div>
         </div>
         <div>
-          <div className="text-primary text-[28px] font-bold">100k+</div>
+          <div className="text-primary text-[28px] font-bold">{summarize.nfts}</div>
           <div className="text-[24px] text-gray">NFTs</div>
         </div>
         <div>
-          <div className="text-primary text-[28px] font-bold">240k+</div>
+          <div className="text-primary text-[28px] font-bold">{summarize.creator}</div>
           <div className="text-[24px] text-gray">Creator</div>
         </div>
       </div>

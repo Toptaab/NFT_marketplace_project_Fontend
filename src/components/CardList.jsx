@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "./Card";
 import BtnTypeSelection from "../ui/Hero/BtnTypeSelection";
+import CollectionCard from './CollectionCard'
 
 function CardList({ arrayCollection }) {
 
@@ -24,10 +25,13 @@ function CardList({ arrayCollection }) {
               nftName={nftValue.name}
               collectionImage={colValue.image}
               CollectionName={colValue.name}
+              collectionId={colValue.id}
               price={nftValue.SaleList[0]?.price}
             />
           ))
         )}
+
+        <CollectionCard/>
 
 
       </div>
