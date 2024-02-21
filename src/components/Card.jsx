@@ -21,11 +21,11 @@ const navigate = useNavigate()
         {/* {nftImage? null :  } */}
       </div>
       <div className="w-full flex flex-col justify-between gap-[1rem]">
-        <div className="text-[18px] font-bold">{nftName}</div>
+        <div className="text-[18px] font-bold" role="button" onClick={()=> navigate(`/asset/${nftId}`)}>{nftName}</div>
         <div className="flex items-center">
           <div className="flex flex-1  items-center justify-start font-semibold gap-[0.5rem]">
-            <AvatarImage collectionImage={collectionImage || avatar} />
-            <div>{CollectionName || "Creator"}</div>
+            <AvatarImage onClick={()=> navigate(`/collection/${collectionId}`)} collectionImage={collectionImage || avatar} />
+            <div role="button" onClick={()=> navigate(`/collection/${collectionId}`)}>{CollectionName || "Creator"}</div>
           </div>
           <div className="flex flex-col flex-1 items-end font-semibold">
             <div>price</div>
