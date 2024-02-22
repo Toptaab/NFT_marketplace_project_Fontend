@@ -10,70 +10,37 @@ export default function AssetContextProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [asset, setAsset] = useState({});
   const { assetId } = useParams();
-  const [existCollection, setExistCollection] = useState();
   const [input, setInput] = useState({});
-  const [image, setImage] = useState(null);
-  const [traitAttributes, setTraitAttributes] = useState([
-    { name: "", traitId: "" },
-  ]);
   const [me, setMe] = useState(null);
-
 
   const getNft = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`/asset/${assetId}`);
-      console.log(response.data);
-      setAsset(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  const authMe = async () => {
-    try {
-      const response = await axios.get("/user", {
-        headers: {
-          Authorization: "Bearer" + " " + accessToken,
-        },
-      });
+      const asset = await axios.get(`/asset/${assetId}`);
+      setAsset(asset.data);
 
-      setMe(response.data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const getExistCollection = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get("/collection/createNft", {
-        headers: {
-          Authorization: "Bearer" + " " + accessToken,
-        },
-      });
-      setExistCollection(response.data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const createNft = async (input, traitAttributes) => {
-    try {
-      setLoading(true);
-      const formData = new FormData();
-      if (image) {
-        formData.append("image", image);
+      if (accessToken) {
+        const me = await axios.get("/user", {
+          headers: {
+            Authorization: "Bearer" + " " + accessToken,
+          },
+        });
+        setMe(me.data);
       }
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  const putOnSaleApi = async ({ price }) => {
+    try {
+      setLoading(true);
       const response = await axios.post(
-        "/asset",
+        `/asset/${assetId}`,
         {
-          collectionId: +input.collectionId,
-          name: input.name,
-          tokenId: 1,
-          TraitAttributes: traitAttributes,
+          price,
         },
         {
           headers: {
@@ -82,84 +49,93 @@ export default function AssetContextProvider({ children }) {
         }
       );
 
-      const uploadImageRespose = await axios.patch(
-        `/asset/${response.data.id}/image`,
-        formData,
+      console.log(response);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      location.reload()
+    }
+  };
+
+  const updatePriceApi = async ({ price }) => {
+    try {
+      setLoading(true);
+
+      const response = await axios.patch(
+        `/asset/${assetId}/update`,
+        {
+          price,
+        },
         {
           headers: {
             Authorization: "Bearer" + " " + accessToken,
           },
         }
       );
-
-      console.log(uploadImageRespose.data);
-      setLoading(false);
-      navigate(`/asset/${response.data.id}`);
+        
+      console.log(response.data);
     } catch (err) {
       console.log(err);
+    }finally {
+      location.reload()
+      
     }
   };
 
-  const handleUploadImage = (e) => {
-    setImage(e.target.files[0]);
-  };
+  const cancelSaleNftApi = async () =>{
+    try {
+      setLoading(true);
+      const response = await axios.delete(
+        `/asset/${assetId}/cancel`,
+        {
+          headers: {
+            Authorization: "Bearer" + " " + accessToken,
+          },
+        }
+      );
+        
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+    }finally {
+      location.reload()
+      
+    }
+
+  }
 
   const handleChangeInput = (e) => {
+    console.log(input);
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const handleTraitChange = (e, index, traitId) => {
-    let newTraitAttributes;
-    !traitAttributes[index]
-      ? (newTraitAttributes = [...traitAttributes, { name: "", traitId: "" }])
-      : (newTraitAttributes = [...traitAttributes]);
-
-    console.log(newTraitAttributes);
-
-    newTraitAttributes[index].name = e.target.value;
-    newTraitAttributes[index].traitId = traitId;
-
-    setTraitAttributes(newTraitAttributes);
+  const putOnSaleHandle = () => {
+    putOnSaleApi(input);
   };
 
-  const handleSummit = (e) => {
-    e.preventDefault();
-
-    createNft(input, traitAttributes);
+  const updatePriceHandler = () => {
+    updatePriceApi(input)
   };
+
+  const cancelSaleNftHandler = () => {
+    cancelSaleNftApi()
+  }
 
   useEffect(() => {
-    if (assetId) {
-      getNft();
-      authMe();
-    } else {
-      getExistCollection();
-    }
+    getNft();
   }, []);
-
-
-
-
-
- 
-
-
-
-
 
   return (
     <AssetContext.Provider
       value={{
-        image,
-        handleUploadImage,
-        handleTraitChange,
         input,
         asset,
         loading,
-        existCollection,
-        handleSummit,
         handleChangeInput,
         me,
+        putOnSaleHandle,
+        updatePriceHandler,
+        cancelSaleNftHandler,
       }}
     >
       {children}

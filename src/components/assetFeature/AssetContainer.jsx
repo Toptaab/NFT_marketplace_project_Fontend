@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "../../ui/Button";
 import CollectionImage from "../../ui/CollectionImage";
 import AvatarImage from "../../ui/AvatarImage";
 import TraitCard from "./ui/TraitCard";
@@ -14,14 +13,14 @@ import AssetButton from './AssetButton'
 
 function AssetContainer() {
   const navigate = useNavigate();
-  const { asset, loading,me } = useAssetContext();
+  const { asset, loading } = useAssetContext();
+
+
 
 
   if (loading) {
     return <Spinner />;
   }
-  
-  console.log("me",me)
 
   return (
     <div className="flex flex-col gap-[2rem] p-[2rem]">
@@ -35,7 +34,7 @@ function AssetContainer() {
         </div>
         <div className="flex-1 flex flex-col justify-center items-center gap-[2rem] ">
           <div className="flex flex-col gap-[1rem] w-[70%]">
-            <div className="flex gap-[1rem]" role="button" onClick={()=> {navigate(`/profile/${asset.collection.id}`)}}>
+            <div className="flex gap-[1rem]" role="button" onClick={()=> {navigate(`/collection/${asset.collection.id}`)}}>
               <CollectionImage collectionImage={asset.collection.image} />
               <p className="text-[18px] font-semibold">
                 {asset.collection.name}

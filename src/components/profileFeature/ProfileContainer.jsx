@@ -9,6 +9,7 @@ import Spinner from '../../ui/Spinner';
 function ProfileContainer() {
   const { userObj, loading,relationShip ,status } = useProfileContext();
 
+  console.log(userObj)
   
 
   if(loading){
@@ -18,7 +19,6 @@ function ProfileContainer() {
   return (
     <div className='w-full flex flex-col gap-[2rem] p-[3rem]'>
         <div>
-          {console.log(relationShip)}
             <ProfileHeader userObj={userObj} relationShip={relationShip} status={status} />
         </div>
         <div>

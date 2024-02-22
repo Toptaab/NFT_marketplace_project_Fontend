@@ -1,14 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import Card from "../Card";
 import Input from "../../ui/Input";
 import Button from "../../ui/Button";
 import useCreateCollectionContext from "../createCollectionFeature/hook/useCreateCollectionContext";
 import CreateCollectionModal from "../createCollectionFeature/CreateCollectionModal";
-import useAssetContext from "./hook/useAssetContext";
+import useAssetCreateContext from "./hook/useCreateAssetContext";
 import Spinner from "../../ui/Spinner";
 
 function CreateAssetContainer() {
-  const reader = new FileReader()
   const { openModal, handelModal } = useCreateCollectionContext();
   const {
     handleUploadImage,
@@ -19,7 +18,7 @@ function CreateAssetContainer() {
     input,
     handleTraitChange,
     image,
-  } = useAssetContext();
+  } = useAssetCreateContext();
   let collectionIndex;
   const fileInputEl = useRef(null)
 
@@ -33,8 +32,6 @@ function CreateAssetContainer() {
       (i) => i.id === +input.collectionId
     );
   }
-
-
 
   return (
     <div className="w-full p-[3rem] flex flex-col justify-start items-center gap-[2rem]">
