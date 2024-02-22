@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export const AssetContext = createContext();
 
 export default function AssetContextProvider({ children }) {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const accessToken = localStorage.getItem("accessToken");
   const [loading, setLoading] = useState(true);
   const [asset, setAsset] = useState({});
@@ -16,7 +16,7 @@ export default function AssetContextProvider({ children }) {
   const [traitAttributes, setTraitAttributes] = useState([
     { name: "", traitId: "" },
   ]);
-
+  const [me, setMe] = useState(null);
 
 
   const getNft = async () => {
@@ -27,8 +27,20 @@ export default function AssetContextProvider({ children }) {
       setAsset(response.data);
     } catch (err) {
       console.log(err);
-    } finally {
+    }
+  };
+  const authMe = async () => {
+    try {
+      const response = await axios.get("/user", {
+        headers: {
+          Authorization: "Bearer" + " " + accessToken,
+        },
+      });
+
+      setMe(response.data);
       setLoading(false);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -49,7 +61,7 @@ export default function AssetContextProvider({ children }) {
 
   const createNft = async (input, traitAttributes) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const formData = new FormData();
       if (image) {
         formData.append("image", image);
@@ -79,11 +91,10 @@ export default function AssetContextProvider({ children }) {
           },
         }
       );
-      
-      console.log(uploadImageRespose.data)
-      setLoading(false)
-      navigate(`/asset/${response.data.id}`)
 
+      console.log(uploadImageRespose.data);
+      setLoading(false);
+      navigate(`/asset/${response.data.id}`);
     } catch (err) {
       console.log(err);
     }
@@ -120,10 +131,21 @@ export default function AssetContextProvider({ children }) {
   useEffect(() => {
     if (assetId) {
       getNft();
+      authMe();
     } else {
       getExistCollection();
     }
   }, []);
+
+
+
+
+
+ 
+
+
+
+
 
   return (
     <AssetContext.Provider
@@ -137,6 +159,7 @@ export default function AssetContextProvider({ children }) {
         existCollection,
         handleSummit,
         handleChangeInput,
+        me,
       }}
     >
       {children}

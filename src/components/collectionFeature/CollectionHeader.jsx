@@ -1,7 +1,5 @@
 import React from "react";
 import ProfileAvatarBig from "../../ui/ProfileAvatarBig";
-import StatusButton from "../profileFeature/StatusButton";
-import { PlusIcon } from "../../icons";
 import Button from "../../ui/Button";
 import { useNavigate } from "react-router-dom";
 

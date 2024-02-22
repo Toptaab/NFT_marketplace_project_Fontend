@@ -7,14 +7,21 @@ import { AttributeIcon, InformationIcon } from "../../icons";
 import useAssetContext from "./hook/useAssetContext";
 import Spinner from "../../ui/Spinner";
 import { useNavigate } from "react-router-dom";
+import AssetButton from './AssetButton'
+
+
+
 
 function AssetContainer() {
   const navigate = useNavigate();
-  const { asset, loading } = useAssetContext();
+  const { asset, loading,me } = useAssetContext();
+
 
   if (loading) {
     return <Spinner />;
   }
+  
+  console.log("me",me)
 
   return (
     <div className="flex flex-col gap-[2rem] p-[2rem]">
@@ -22,7 +29,7 @@ function AssetContainer() {
         <div className=" flex-1 flex justify-center items-center">
           <img
             className="object-cover rounded-[1rem w-[20rem] h-[20rem] rounded-md"
-            src={asset.image}
+            src={asset?.image}
             alt=""
           />
         </div>
@@ -46,22 +53,8 @@ function AssetContainer() {
             </div>
           </div>
           {/*  */}
-          <div className="w-[70%] flex flex-col justify-center items-center border-[1px] gap-[1rem] p-[1rem] rounded-xl">
-            <div className="text-center">
-              <p className="text-[12px] text-gray">price</p>
-              <p className="text-[14px] font-semibold">
-                {" "}
-                {asset?.SaleList[0]?.price
-                  ? asset.SaleList[0].price + " " + asset.chain.currencySymbol
-                  : "Not On sale"}
-              </p>
-            </div>
-
-            <div className="flex gap-[1rem] w-[90%]">
-              <Button name="Edit price" />
-              <Button name="Cancel" />
-            </div>
-          </div>
+          <AssetButton  />
+          {/*  */}
         </div>
       </div>
 
@@ -100,6 +93,7 @@ function AssetContainer() {
                     traitAttribute={value.name}
                   />
                 ))}
+                
               </div>
             </div>
           </div>
