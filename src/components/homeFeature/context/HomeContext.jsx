@@ -5,21 +5,30 @@ export const HomeContext = createContext();
 
 export default function HomeContextProvider({ children }) {
   const [loading, setLoading] = useState(true);
-  const [arrayCollection, setArrayCollection] = useState(null);
   const [summarize, setSummarize] = useState([]);
+  const [collection, setCollection] = useState(null)
+  const [asset, setAsset] = useState(null);
 
   const getAllCollectionAsset = async () => {
     try {
       setLoading(true);
-      const collection = await axios.get("/collection");
-      setArrayCollection(collection.data);
+      const apiCollection = await axios.get("/collection")
+      setCollection(apiCollection.data)
+      const apiAsset = await axios.get("/asset");
+      setAsset(apiAsset.data);
+      // const collection = await axios.get("/collection");
+      // setArrayCollection(collection.data);
 
-      const asset = await axios.get("/asset/count");
-      const history = await axios.get("/history/count");
-      const user = await axios.get("/user/count");
+      const countAsset = await axios.get("/asset/count");
+      const countHistory = await axios.get("/history/count");
+      const countUser = await axios.get("/user/count");
+
+
+
+
 
       setSummarize(
-        { nfts: asset.data._count.id, totalSale: history.data._count.id,creator: user.data._count.id  },
+        { nfts: countAsset.data._count.id, totalSale: countHistory.data._count.id,creator: countUser.data._count.id  },
         );
 
         
@@ -38,7 +47,7 @@ export default function HomeContextProvider({ children }) {
   }, []);
 
   return (
-    <HomeContext.Provider value={{ arrayCollection, loading, summarize }}>
+    <HomeContext.Provider value={{asset,collection, loading, summarize }}>
       {children}
     </HomeContext.Provider>
   );
