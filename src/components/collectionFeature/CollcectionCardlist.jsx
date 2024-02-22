@@ -3,7 +3,6 @@ import BtnTypeSelection from '../../ui/Hero/BtnTypeSelection';
 import Card from '../Card';
 
 function CollcectionCardlist({collectionObj}) {
-  console.log(collectionObj)
   
     return (
         <div className="w-full flex flex-col gap-[2rem]">
@@ -20,9 +19,10 @@ function CollcectionCardlist({collectionObj}) {
                   nftId={Value.id}
                   nftImage={Value.image}
                   nftName={Value.name}
-                  collectionImage={collectionObj.image}
-                  CollectionName={collectionObj.name}
+                  collectionImage={Value.wallet.user.image}
+                  CollectionName={Value.wallet.user.userName}
                   price={Value.SaleList[0]?.price}
+                  userId={Value.wallet.user.id}
                 />
               )
             }

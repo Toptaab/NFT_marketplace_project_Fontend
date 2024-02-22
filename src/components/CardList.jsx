@@ -6,7 +6,7 @@ import CollectionList from "./CollectionList";
 function CardList({ arrayCollection,name }) {
 const [switchTap, setSwitchTap] = useState(true)
 
-const switchTapHandler = ({name}) => {
+const switchTapHandler = () => {
   setSwitchTap(!switchTap)
 }
 

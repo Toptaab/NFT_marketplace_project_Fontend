@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 function Profile() {
 const userId = localStorage.getItem('userId')
+const accessToken = localStorage.getItem("accessToken");
 
 
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ const userId = localStorage.getItem('userId')
     <div className="flex justify-center items-center gap-[1rem] w-[8rem]">
       <div>
         <a href="/setting">
-          <SettingIcon />
+          {accessToken? <SettingIcon /> : null}
         </a>
       </div>
       
@@ -20,7 +21,7 @@ const userId = localStorage.getItem('userId')
         <a onClick={()=> {localStorage.clear()
         navigate('/login')
         }}>
-          <LogOut />
+          {accessToken? <LogOut />: null}
         </a>
       </div>
       <div>

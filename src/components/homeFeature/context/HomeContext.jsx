@@ -11,40 +11,30 @@ export default function HomeContextProvider({ children }) {
   const getAllCollectionAsset = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/collection");
-      console.log(response.data);
-      setArrayCollection(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+      const collection = await axios.get("/collection");
+      setArrayCollection(collection.data);
 
-  const getSummarize = async () => {
-    try {
-      const response = await axios.get("/asset/count");
-      response.history = await axios.get("/history/count");
-      response.user = await axios.get("/user/count");
-
-      console.log(response);
+      const asset = await axios.get("/asset/count");
+      const history = await axios.get("/history/count");
+      const user = await axios.get("/user/count");
 
       setSummarize(
-        { nfts: response.data._count.id, totalSale: response.history.data._count.id,creator:response.user.data._count.id  },
- 
-      );
-      setLoading(false);
+        { nfts: asset.data._count.id, totalSale: history.data._count.id,creator: user.data._count.id  },
+        );
+
+        
     } catch (err) {
       console.log(err);
+    }finally{
+      setLoading(false);
     }
   };
 
-  // const setSummarizeHandle = (key,value) => {
-  //   setSummarize({...summarize,[key]:value})
 
-  // }
+
 
   useEffect(() => {
     getAllCollectionAsset();
-    getSummarize();
   }, []);
 
   return (

@@ -3,13 +3,14 @@ import CardList from '../CardList'
 import ProfileHeader from '../ProfileHeader'
 import useProfileContext from './hook/userProfileContext';
 import Spinner from '../../ui/Spinner';
+import UserCardList from './UserCardList';
 
 
 
 function ProfileContainer() {
   const { userObj, loading,relationShip ,status } = useProfileContext();
 
-  console.log(userObj)
+
   
 
   if(loading){
@@ -22,7 +23,8 @@ function ProfileContainer() {
             <ProfileHeader userObj={userObj} relationShip={relationShip} status={status} />
         </div>
         <div>
-            <CardList name="My Assets" arrayCollection={userObj.Collections}/>
+            {/* <CardList name="My Assets" arrayCollection={userObj?.Collections}/> */}
+            <UserCardList userObj={userObj}/>
         </div>
     </div>
   )

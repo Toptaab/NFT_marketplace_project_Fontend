@@ -13,17 +13,15 @@ export default function CollectionContextProvider({ children }) {
   const collectionApi = async () => {
     try {
         setLoading(true)
-      const response = await axios.get(`/collection/${collectionId}`, {
-        headers: {
-          Authorization: "Bearer" + " " + accessToken,
-        },
-      });
+      const response = await axios.get(`/collection/${collectionId}`);
 
       setCollectionObj(response.data);
 
       setLoading(false)
     } catch (err) {
       console.log(err);
+    }finally{
+      setLoading(false)
     }
   };
 

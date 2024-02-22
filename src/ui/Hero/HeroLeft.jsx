@@ -6,8 +6,7 @@ import useHomeContext from "../../components/homeFeature/hook/useHomeContext";
 
 
 function HeroLeft() {
-  const {arrayCollection,summarize} = useHomeContext()
-console.log(summarize)
+  const {summarize} = useHomeContext()
 
   const navigate = useNavigate()
   return (

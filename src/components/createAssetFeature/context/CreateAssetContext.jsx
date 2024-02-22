@@ -1,22 +1,23 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 
-export const CreateAssetContext = createContext()
+export const CreateAssetContext = createContext();
 
+export default function CreateAssetContextProvider({ children }) {
+  const navigate = useNavigate();
+  const accessToken = localStorage.getItem("accessToken");
+  const [loading, setLoading] = useState(true);
+  const [input, setInput] = useState({});
 
-export default function CreateAssetContextProvider({children}){
-    const navigate = useNavigate();
-    const accessToken = localStorage.getItem("accessToken");
-    const [loading, setLoading] = useState(true);
- const [input, setInput] = useState({});
-
- const [image, setImage] = useState(null);
- const [existCollection, setExistCollection] = useState();
- const [traitAttributes, setTraitAttributes] = useState([
+  const [image, setImage] = useState(null);
+  const [existCollection, setExistCollection] = useState();
+  const [traitAttributes, setTraitAttributes] = useState([
     { name: "", traitId: "" },
   ]);
 
+
+  if(!accessToken){return <Navigate to="/login" />}
 
   const getExistCollection = async () => {
     try {
@@ -103,10 +104,24 @@ export default function CreateAssetContextProvider({children}){
     createNft(input, traitAttributes);
   };
 
-  useEffect(()=>{
-    getExistCollection()
-  },[])
+  useEffect(() => {
+    getExistCollection();
+  }, []);
 
-
-    return <CreateAssetContext.Provider value={{handleUploadImage,loading,existCollection,handleSummit,input,handleChangeInput,handleTraitChange,image}}>{children}</CreateAssetContext.Provider>
+  return (
+    <CreateAssetContext.Provider
+      value={{
+        handleUploadImage,
+        loading,
+        existCollection,
+        handleSummit,
+        input,
+        handleChangeInput,
+        handleTraitChange,
+        image,
+      }}
+    >
+      {children}
+    </CreateAssetContext.Provider>
+  );
 }

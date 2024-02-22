@@ -49,11 +49,11 @@ const navigate = useNavigate()
       </div>
 
       {/*  */}
-      <div className="flex justify-end w-full gap-[1rem]">
+      {/* <div className="flex justify-end w-full gap-[1rem]">
         <div className="w-[40%] min-w-[5rem]">
           <Button name="Mint" onClick={() => {}}></Button>
         </div>
-      </div>
+      </div> */}
 
 
       

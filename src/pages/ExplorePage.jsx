@@ -1,8 +1,12 @@
 import React from 'react'
+import ExploreContatiner from '../components/exploreFeature/ExploreContatiner'
 
 function ExplorePage() {
   return (
-    <div>ExplorePage</div>
+    <div>
+
+      <ExploreContatiner />
+    </div>
   )
 }
 
