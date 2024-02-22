@@ -34,7 +34,7 @@ function ExploreCardlist() {
               nftName={value.name}
               collectionImage={value.wallet.user.image}
               CollectionName={value.wallet.user.userName}
-              collectionId={value.wallet.user.id}
+              userId={value.wallet.user.id}
               price={value?.SaleList[0]?.price}
             />
           ))

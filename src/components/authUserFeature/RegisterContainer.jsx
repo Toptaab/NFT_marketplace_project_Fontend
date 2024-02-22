@@ -7,7 +7,7 @@ import Form from "../../ui/Form";
 
 function RegisterContainer() {
 
-const {changeHandler,registerHandler} = useFormContext()
+const {changeHandler,registerHandler,error} = useFormContext()
 
 
 
@@ -24,26 +24,35 @@ const {changeHandler,registerHandler} = useFormContext()
           <Input 
           onChange={changeHandler}
           name="userName"
-          placeholder="Username">
+          placeholder="Username"
+          error={error.userName}
+          >
+            
             <UserRegisterIcon />
           </Input>
           <Input 
           onChange={changeHandler}
           name="email"
-          placeholder="Email Address">
+          placeholder="Email Address"
+          error={error.email}
+          >
             <EmailIcon />
           </Input>
           <Input 
           onChange={changeHandler}
           type="password"
-          name="password">
+          name="password"
+          error={error.password}
+          >
             <PasswordLockIcon />
           </Input>
           <Input
           onChange={changeHandler}
           type="password"
           name="confirmPassword"
-          placeholder="Confirm Password">
+          placeholder="Confirm Password"
+          error={error.confirmPassword}
+          >
             <PasswordLockIcon />
           </Input>
           <div>

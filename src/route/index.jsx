@@ -50,29 +50,27 @@ const router = createBrowserRouter([
       },
       {
         path: "/explore",
-        element: <ExplorePage />
+        element: <ExplorePage />,
       },
       {
-        path: '/create',
-        element: <CreatePage/>
+        path: "/create",
+        element: <CreatePage />,
       },
       {
         path: "/profile/:userId",
-        element:(
-            <ProfilePage/>
-        )
+        element: <ProfilePage />,
       },
       {
         path: "/setting",
         element: <SettingPage />,
       },
       {
-        path: '/asset/:assetId',
-        element: <AssetPage/>
+        path: "/asset/:assetId",
+        element: <AssetPage />,
       },
       {
-        path: '/collection/:collectionId',
-        element: <CollectionPage/>
+        path: "/collection/:collectionId",
+        element: <CollectionPage />,
       },
       {
         path: "*",

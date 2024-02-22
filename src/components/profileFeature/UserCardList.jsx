@@ -47,7 +47,7 @@ function UserCardList({userObj}) {
           )}
         </div>
       ) : (
-        <CollectionList collectionArray={userObj.Collections} />
+        <CollectionList collectionArray={userObj?.Collections} />
       )}
 
       {/*  */}

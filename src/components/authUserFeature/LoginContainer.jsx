@@ -6,7 +6,9 @@ import Input from "../../ui/Input";
 import useFormContext from "../../hooks/useFormContext";
 
 function LoginContainer() {
-  const {changeHandler, input, summitHandler,loginHandler } = useFormContext()
+  const {changeHandler, input,loginHandler,error } = useFormContext()
+
+ 
 
  
   return (
@@ -21,10 +23,10 @@ function LoginContainer() {
             bunttonName="Sign In"
           
           >
-            <Input name="email" onChange={changeHandler} value={input}>
+            <Input name="email" onChange={changeHandler} value={input} error={error.email}>
               <UserRegisterIcon />
             </Input>
-            <Input name="password" type="password" onChange={changeHandler} value={input}  >
+            <Input name="password" type="password" onChange={changeHandler} value={input}  error={error.password} >
               <PasswordLockIcon />
             </Input>
             <div>

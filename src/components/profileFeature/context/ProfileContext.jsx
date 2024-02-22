@@ -52,7 +52,7 @@ export default function ProfileContextProvider({ children }) {
       
     } catch (err) {
       console.log(err);
-      navigate('/homepage')
+
     } finally {
       setLoading(false);
     }

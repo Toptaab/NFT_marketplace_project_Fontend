@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import useProfileContext from "./hook/userProfileContext";
 import Button from "../../ui/Button";
 import { PlusIcon } from "../../icons";
 
 function UserStatusButton({ handelModal }) {
+  const [bindingWalletOpen, setBindingWalletOpen] = useState(false)
   const {  userObj, me } = useProfileContext();
 
 
@@ -47,9 +48,10 @@ if(userObj?.Relationship?.find((value) => value.followerId === me?.id ? true : f
         <Button secondary={true} name="Follow" onClick={() => {}}></Button>
       </div>
       <div className="max-w-[8rem] flex-1">
-        <button className="bg-primary text-wrap p-[0.5rem] rounded-xl text-white font-semibold w-full">
-          {userObj.Wallets[0].walletAddress}
+        <button className="bg-primary text-wrap p-[0.5rem] rounded-xl text-white font-semibold w-full" onClick="">
+          {userObj?.Wallets[0]?.walletAddress || "Binding"}
         </button>
+        
       </div>
     </div>
   );

@@ -33,7 +33,7 @@ function ProfileHeader({ userObj,status,relationShip }) {
           </div>
           <div>
             <div className=" text-[28px] font-bold text-primary">
-              {userObj?.Wallets[0].Nfts.length}
+              {userObj?.Wallets[0]?.Nfts.length}
             </div>
             <div className="text-[24px] text-gray">NFTs</div>
           </div>

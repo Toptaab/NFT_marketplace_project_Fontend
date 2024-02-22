@@ -9,7 +9,6 @@ function CardList({ arrayCollection, name, arrayAsset }) {
   const switchTapHandler = () => {
     setSwitchTap(!switchTap);
   };
-  console.log(arrayAsset);
 
   return (
     <div className="w-full flex flex-col gap-[2rem]">
@@ -38,7 +37,7 @@ function CardList({ arrayCollection, name, arrayAsset }) {
             nftName={value.name}
             collectionImage={value.wallet.user.image}
             CollectionName={value.wallet.user.userName}
-            collectionId={value.wallet.user.id}
+            userId={value.wallet.user.id}
             price={value?.SaleList[0]?.price}
           />
         ))}
