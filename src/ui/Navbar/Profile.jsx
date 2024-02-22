@@ -1,14 +1,14 @@
 import React from "react";
 import { LogOut, SettingIcon, UserIcon } from "../../icons";
-import { useNavigate } from "react-router-dom";
+
+import useAppContext from '../../hooks/useAppContext'
 
 
 function Profile() {
 const userId = localStorage.getItem('userId')
 const accessToken = localStorage.getItem("accessToken");
+const {me, logoutHandler} = useAppContext()
 
-
-  const navigate = useNavigate()
   return (
     <div className="flex justify-center items-center gap-[1rem] w-[8rem]">
       <div>
@@ -17,16 +17,15 @@ const accessToken = localStorage.getItem("accessToken");
         </a>
       </div>
       
-      <div>
-        <a onClick={()=> {localStorage.clear()
-        navigate('/login')
-        }}>
+      <div className="flex items-center">
+        <button onClick={logoutHandler}>
           {accessToken? <LogOut />: null}
-        </a>
+        </button>
       </div>
-      <div>
+      <div className="flex-1">
         <a href={`/profile/${userId}`}>
-          <UserIcon />
+          {me?.image? <img className="w-[2rem] rounded-full" src={me?.image} alt="" /> :<UserIcon />}
+          
         </a>
       </div>
     </div>
