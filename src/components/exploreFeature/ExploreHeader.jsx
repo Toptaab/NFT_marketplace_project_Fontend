@@ -1,11 +1,19 @@
 import React from "react";
 import { CATEGORY } from "../../constant";
 import useExploreContext from "./hook/useExploreContext";
+import { ArrowIcon } from "../../icons";
 
 function ExploreHeader() {
-  const { assetTypeHandler, assetType } = useExploreContext();
-
-  console.log(assetType);
+  const {
+    sortPriceHandler,
+    assetTypeHandler,
+    clearFillterHandler,
+    assetType,
+    setCategoryHandler,
+    categorySelection,
+    arrowOpen,
+    sortDirection,
+  } = useExploreContext();
 
   return (
     <div className="flex-1 flex flex-col gap-[2rem]">
@@ -14,7 +22,9 @@ function ExploreHeader() {
           role="button"
           name="nft"
           onClick={assetTypeHandler}
-          className={`${assetType === "nft" ? "font-semibold" : "text-gray"} hover:font-semibold`}
+          className={`${
+            assetType === "nft" ? "font-semibold" : "text-gray"
+          } hover:font-semibold`}
         >
           NFTs
         </button>
@@ -41,34 +51,91 @@ function ExploreHeader() {
       </div>
 
       {/*  */}
-      <div className="flex gap-[2rem] text-[36px]">
-        <div role="button" className="text-gray">
+      <div
+        className={`flex gap-[2rem] text-[36px] ${
+          assetType === "creator" ? "hidden" : null
+        }`}
+      >
+        <button
+          name={CATEGORY.ART}
+          onClick={setCategoryHandler}
+          className={`${
+            categorySelection === CATEGORY.ART
+              ? "font-semibold"
+              : "text-gray hover:font-semibold"
+          }`}
+        >
           {CATEGORY.ART}
-        </div>
-        <div role="button" className="text-gray">
+        </button>
+        <button
+          name={CATEGORY.GAMING}
+          onClick={setCategoryHandler}
+          className={`${
+            categorySelection === CATEGORY.GAMING
+              ? "font-semibold"
+              : "text-gray hover:font-semibold"
+          }`}
+        >
           {CATEGORY.GAMING}
-        </div>
-        <div role="button" className="text-gray">
+        </button>
+        <button
+          name={CATEGORY.MUSIC}
+          onClick={setCategoryHandler}
+          className={`${
+            categorySelection === CATEGORY.MUSIC
+              ? "font-semibold"
+              : "text-gray hover:font-semibold"
+          }`}
+        >
           {CATEGORY.MUSIC}
-        </div>
-        <div role="button" className="text-gray">
+        </button>
+        <button
+          name={CATEGORY.MEMBERSHIP}
+          onClick={setCategoryHandler}
+          className={`${
+            categorySelection === CATEGORY.MEMBERSHIP
+              ? "font-semibold"
+              : "text-gray hover:font-semibold"
+          }`}
+        >
           {CATEGORY.MEMBERSHIP}
-        </div>
-        <div role="button" className="text-gray">
+        </button>
+        <button
+          name={CATEGORY.PHOTOGRAPHY}
+          onClick={setCategoryHandler}
+          className={`${
+            categorySelection === CATEGORY.PHOTOGRAPHY
+              ? "font-semibold"
+              : "text-gray hover:font-semibold"
+          }`}
+        >
           {CATEGORY.PHOTOGRAPHY}
-        </div>
+        </button>
       </div>
 
       {/*  */}
       {assetType === "creator" ? null : (
         <div className="flex gap-[2rem] items-baseline">
-          <div className="text-[42px] font-semibold">Sort By</div>
-          <div role="button" className="font-semibold">
-            Price
+          <div className="text-[26px] font-semibold">Sort by</div>
+          <div className="flex items-baseline gap-[3px]">
+            <button
+              className="text-[18px] hover:font-semibold"
+              onClick={sortPriceHandler}
+            >
+              Price
+            </button>
+            {arrowOpen ? (
+              <div className={`${sortDirection? "rotate-180" : "" }`}>
+                <ArrowIcon  />
+              </div>
+            ) : null}
           </div>
-          <div role="button" className="text-primary text-[10px]">
+          <button
+            onClick={clearFillterHandler}
+            className="text-primary text-[10px] hover:font-semibold"
+          >
             clear filter
-          </div>
+          </button>
         </div>
       )}
     </div>

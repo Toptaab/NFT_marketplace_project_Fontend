@@ -41,11 +41,7 @@ function ExploreCardlist() {
         )}
       </div>
 
-      {/* NFT */}
 
-      {/* Collection */}
-
-      {/* Creator */}
     </div>
   );
 }
