@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const AssetContext = createContext();
 
@@ -49,11 +50,13 @@ export default function AssetContextProvider({ children }) {
         }
       );
 
+
+      toast("Salse Success!!")
       console.log(response);
     } catch (err) {
       console.log(err);
     } finally {
-      location.reload()
+      location.reload();
     }
   };
 
@@ -72,37 +75,58 @@ export default function AssetContextProvider({ children }) {
           },
         }
       );
-        
+
+
+      toast("Update Success!!")
       console.log(response.data);
     } catch (err) {
       console.log(err);
-    }finally {
-      location.reload()
-      
+    } finally {
+      location.reload();
     }
   };
 
-  const cancelSaleNftApi = async () =>{
+  const cancelSaleNftApi = async () => {
     try {
       setLoading(true);
-      const response = await axios.delete(
-        `/asset/${assetId}/cancel`,
-        {
-          headers: {
-            Authorization: "Bearer" + " " + accessToken,
-          },
-        }
-      );
-        
+      const response = await axios.delete(`/asset/${assetId}/cancel`, {
+        headers: {
+          Authorization: "Bearer" + " " + accessToken,
+        },
+      });
+
+
+      toast("Update Success")
       console.log(response.data);
     } catch (err) {
       console.log(err);
-    }finally {
-      location.reload()
-      
+    } finally {
+      location.reload();
     }
+  };
 
-  }
+  const buyNftApi = async () => {
+    try {
+      setLoading(true);
+      toast("Buying....")
+
+      console.log(accessToken);
+      const response = await axios.get(`/asset/${assetId}/buy`, {
+        headers: {
+          Authorization: "Bearer" + " " + accessToken,
+        },
+      });
+
+
+      
+      console.log(response.data);
+    } catch (err) {
+      toast("Buy false!!")
+      console.log(err);
+    }finally{
+      location.reload()
+    }
+  };
 
   const handleChangeInput = (e) => {
     console.log(input);
@@ -114,12 +138,16 @@ export default function AssetContextProvider({ children }) {
   };
 
   const updatePriceHandler = () => {
-    updatePriceApi(input)
+    updatePriceApi(input);
   };
 
   const cancelSaleNftHandler = () => {
-    cancelSaleNftApi()
-  }
+    cancelSaleNftApi();
+  };
+
+  const buyNftHandler = () => {
+    buyNftApi();
+  };
 
   useEffect(() => {
     getNft();
@@ -136,6 +164,7 @@ export default function AssetContextProvider({ children }) {
         putOnSaleHandle,
         updatePriceHandler,
         cancelSaleNftHandler,
+        buyNftHandler,
       }}
     >
       {children}

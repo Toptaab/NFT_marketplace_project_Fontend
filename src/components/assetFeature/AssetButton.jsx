@@ -4,11 +4,9 @@ import Button from "../../ui/Button";
 import SetSalePriceModal from "./SetSalePriceModal";
 
 function AssetButton() {
-  const { asset, me, input, handleChangeInput,putOnSaleHandle,updatePriceHandler,cancelSaleNftHandler } = useAssetContext();
+  const { asset, me, buyNftHandler, handleChangeInput,putOnSaleHandle,updatePriceHandler,cancelSaleNftHandler } = useAssetContext();
   const [priceInputModal, setPriceInputModal] = useState(false);
 
-console.log(asset)
-console.log(me)
 
   const modalHandler = () => {
     setPriceInputModal(!priceInputModal);
@@ -90,7 +88,7 @@ console.log(me)
           </div>
 
           <div className="flex gap-[1rem] w-[90%]">
-            <Button name="BUY" />
+            <Button name="BUY" onClick={buyNftHandler} />
           </div>
         </div>
       );

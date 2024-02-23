@@ -46,10 +46,10 @@ function ProfileHeader({ userObj,status,relationShip }) {
           <div>
             <div className="flex  items-baseline">
               <div className=" text-[28px] font-bold text-primary">
-                {userObj?.Wallets[0].Cryptos[0].balance}{" "}
+                {userObj?.Wallets[0]?.Cryptos[0]?.balance || "0"}
               </div>
               <div className=" text-[20px] font-bold text-primary">
-                {userObj?.Wallets[0].Cryptos[0].chain.currencySymbol}
+                {userObj?.Wallets[0]?.Cryptos[0]?.chain.currencySymbol || "ETH"}
               </div>
             </div>
             <div className="text-[24px] text-gray">Balance</div>

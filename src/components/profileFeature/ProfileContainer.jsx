@@ -11,8 +11,6 @@ function ProfileContainer() {
   const { userObj, loading,relationShip ,status } = useProfileContext();
 
 
-  
-
   if(loading){
     return <Spinner />
   }

@@ -15,7 +15,7 @@ function CollectionList({collectionArray}) {
         <p className="w-[5rem]">BlockChain</p>
       </div>
       <div className="border-[1px] border-gray rounded-md w-full">
-      {collectionArray?.map((value,index) => <CollectionCard key={value.id} catagory={value.category.name} id={value.id} name={value.name} floorPrice={value.history[0]?.price} image={value.image} totalHistory={value._count?.history} totalNft={value._count?.Nfts} owner="" chain="ETH"  number={index+1}/>)}
+      {collectionArray.length > 0? collectionArray.map((value,index) => <CollectionCard key={value.id} catagory={value.category?.name} id={value.id} name={value.name} floorPrice={value.history[0]?.price} image={value.image} totalHistory={value._count?.history} totalNft={value._count?.Nfts} owner="" chain="ETH"  number={index+1}/>) : null}
       </div>
     </div>
   );

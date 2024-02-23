@@ -1,16 +1,21 @@
 import { createContext, useState } from "react";
 import axios from "../config/axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 export const FormContext = createContext();
 import { toast } from "react-toastify";
 import validateLogin from "../validator/validate-login";
 import validateRegister from "../validator/validate-register";
 
-
 export default function FormContextProvider({ children }) {
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState(null);
   const [error, setError] = useState({});
+  const [image, setImage] = useState(null);
+  const userId = localStorage.getItem('userId')
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
+
+  console.log(userId);
 
   const loginApi = async (input) => {
     try {
@@ -40,19 +45,19 @@ export default function FormContextProvider({ children }) {
 
   const registerApi = async (input) => {
     try {
-      const validatationError = validateRegister(input)
-      if(validatationError){
+      const validatationError = validateRegister(input);
+      if (validatationError) {
         toast("You Almost There!!", {
           position: "top-center",
         });
-        return setError(validatationError)
+        return setError(validatationError);
       }
 
       const response = await axios.post("/auth/register", {
-        userName:input.userName,
-        email:input.email,
-        password:input.password,
-        confirmPassword:input.confirmPassword,
+        userName: input.userName,
+        email: input.email,
+        password: input.password,
+        confirmPassword: input.confirmPassword,
       });
       localStorage.setItem("accessToken", response.data.accessToken);
       localStorage.setItem("userId", response.data.id);
@@ -71,11 +76,14 @@ export default function FormContextProvider({ children }) {
     input.email?.trim() === "" ? delete input.email : null;
     input.userName?.trim() === "" ? delete input.userName : null;
     try {
+      
+      setLoading(true)
       const accessToken = localStorage.getItem("accessToken");
       if (!accessToken) {
         navigate("/login");
       }
-      const response = await axios.patch(
+
+      await axios.patch(
         "/user",
         {
           email: input.email,
@@ -90,20 +98,38 @@ export default function FormContextProvider({ children }) {
           },
         }
       );
+
+      if (image) {
+        const formData = new FormData();
+        console.log("heres");
+        formData.append("image", image)
+        formData.append("password", input.password);
+
+        const uploadImageResponse = await axios.patch("/user/image", formData, {
+          headers: {
+            Authorization: "Bearer" + " " + accessToken,
+          },
+        });
+        console.log(uploadImageResponse.data);
+      }
+
       setInput(null);
-      navigate("/profile");
     } catch (err) {
       console.log(err);
+    }finally{
+      setLoading(false)
+      navigate(`/profile/${userId}`);
+      location.reload()
     }
   };
 
-  const registerHandler = async (e) => {
+  const registerHandler = (e) => {
     e.preventDefault();
     registerApi(input);
   };
 
   const changeHandler = (e) => {
-    // console.log(input);
+    console.log(input);
     setError({});
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -117,6 +143,9 @@ export default function FormContextProvider({ children }) {
     e.preventDefault();
     updateUserApi(input);
   };
+  const handleUploadImage = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   return (
     <FormContext.Provider
@@ -127,6 +156,9 @@ export default function FormContextProvider({ children }) {
         loginHandler,
         updateHandler,
         error,
+        handleUploadImage,
+        loading,
+        image,
       }}
     >
       {children}

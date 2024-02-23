@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import {
   EmailIcon,
   PasswordLockIcon,
@@ -9,9 +9,19 @@ import Button from "../../ui/Button";
 import Input from "../../ui/Input";
 import useFormContext from "../../hooks/useFormContext";
 import TextArea from "../../ui/TextArea";
+import Spinner from "../../ui/Spinner";
 
 function SettingContainer() {
-  const { changeHandler, input,updateHandler } = useFormContext();
+  const {image, changeHandler, input,updateHandler,handleUploadImage,loading } = useFormContext();
+  const fileEl = useRef(null)
+  console.log(image)
+
+
+  if(loading){
+    return <Spinner />
+  }
+
+
   return (
     <div className="w-full flex flex-col p-[3rem]">
       <div className="flex flex-col gap-[2rem]">
@@ -34,9 +44,14 @@ function SettingContainer() {
                 </Input>
               </div>
               <div className="flex gap-[1rem]">
-                <div>
-                  <UserIcon />
-                </div>
+                <button onClick={()=> fileEl.current.click()} onChange={handleUploadImage}>
+                  <input type="file" className="hidden"  ref={fileEl}/>
+                  {image? <img
+                className="w-[2.5rem] h-[2.5rem] rounded-full"
+                src={URL.createObjectURL(image)}
+                alt=""
+              /> : <UserIcon />}
+                </button>
                 <div>
                   <h6 className="text-[14px] font-semibold">John Smith</h6>
                   <p className="text-[12px]">Welcome Setting Page</p>
@@ -51,7 +66,7 @@ function SettingContainer() {
             <h5 className="text-[18px] font-semibold">Update Profile</h5>
             <div className="flex flex-col gap-[1rem] px-[1rem]">
               <div className="flex flex-col gap-[0.5rem]">
-                <label className="text-[14px] font-semibold">User Name</label>
+                <label className="text-[14px] font-semibold">Email</label>
                 <Input onChange={changeHandler} name="email">
                   <EmailIcon />
                 </Input>
