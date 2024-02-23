@@ -86,7 +86,7 @@ export default function FormContextProvider({ children }) {
         navigate("/login");
       }
 
-      await axios.patch(
+      const response = await axios.patch(
         "/user",
         {
           email: input.email,
@@ -117,12 +117,16 @@ export default function FormContextProvider({ children }) {
       }
 
 
-      setLoading(false)
+      
       navigate(`/profile/${userId}`);
       location.reload()
       setInput(null);
     } catch (err) {
-      console.log(err);
+      console.log();
+      toast(err.response.data.message)
+    }finally{
+      setLoading(false)
+      
     }
   };
 

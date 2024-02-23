@@ -146,6 +146,7 @@ export default function AssetContextProvider({ children }) {
   };
 
   const buyNftHandler = () => {
+    if(!accessToken){return toast("Please login")}
     buyNftApi();
   };
 

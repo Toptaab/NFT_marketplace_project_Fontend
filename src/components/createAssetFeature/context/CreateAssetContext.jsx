@@ -1,6 +1,8 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import validateCreateAsset from "../../../validator/validate-createAsset";
+import { toast } from "react-toastify";
 
 export const CreateAssetContext = createContext();
 
@@ -9,15 +11,14 @@ export default function CreateAssetContextProvider({ children }) {
   const accessToken = localStorage.getItem("accessToken");
   const [loading, setLoading] = useState(true);
   const [input, setInput] = useState({});
-
   const [image, setImage] = useState(null);
+  const [error, setError] = useState({});
   const [existCollection, setExistCollection] = useState();
-  const [traitAttributes, setTraitAttributes] = useState([
-    { name: "", traitId: "" },
-  ]);
+  const [traitAttributes, setTraitAttributes] = useState([]);
 
-
-  if(!accessToken){return <Navigate to="/login" />}
+  if (!accessToken) {
+    return <Navigate to="/login" />;
+  }
 
   const getExistCollection = async () => {
     try {
@@ -38,9 +39,11 @@ export default function CreateAssetContextProvider({ children }) {
   const createNft = async (input, traitAttributes) => {
     try {
       setLoading(true);
-      const formData = new FormData();
-      if (image) {
-        formData.append("image", image);
+
+      const validateError = validateCreateAsset(input);
+      if (validateError) {
+        toast(Object.values(validateError)[0]);
+        return setError(validateError);
       }
 
       const response = await axios.post(
@@ -58,17 +61,22 @@ export default function CreateAssetContextProvider({ children }) {
         }
       );
 
-      const uploadImageRespose = await axios.patch(
-        `/asset/${response.data.id}/image`,
-        formData,
-        {
-          headers: {
-            Authorization: "Bearer" + " " + accessToken,
-          },
-        }
-      );
+      const formData = new FormData();
+      if (image) {
+        formData.append("image", image);
 
-      console.log(uploadImageRespose.data);
+        const uploadImageRespose = await axios.patch(
+          `/asset/${response.data.id}/image`,
+          formData,
+          {
+            headers: {
+              Authorization: "Bearer" + " " + accessToken,
+            },
+          }
+        );
+
+        console.log(uploadImageRespose.data);
+      }
       navigate(`/asset/${response.data.id}`);
     } catch (err) {
       console.log(err);
@@ -82,6 +90,7 @@ export default function CreateAssetContextProvider({ children }) {
   };
 
   const handleChangeInput = (e) => {
+    console.log(input);
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
@@ -100,6 +109,7 @@ export default function CreateAssetContextProvider({ children }) {
   };
 
   const handleSummit = (e) => {
+    if(!image){toast("Please select Image")}
     e.preventDefault();
     createNft(input, traitAttributes);
   };

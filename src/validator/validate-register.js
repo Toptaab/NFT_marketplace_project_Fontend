@@ -17,7 +17,7 @@ const registerSchema = Joi.object({
     .messages({
       "string.empty": "password is required",
       "string.pattern.base":
-        "password must be at least 6 ",
+        "password must be 6 Alphabet ",
       "any.required": "password is required",
     }),
     confirmPassword: Joi.string()

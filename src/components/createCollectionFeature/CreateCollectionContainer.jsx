@@ -3,6 +3,7 @@ import Input from "../../ui/Input";
 import Button from "../../ui/Button";
 import { ImageUploadIcon } from "../../icons";
 import useCreateCollectionContext from "./hook/useCreateCollectionContext";
+import Spinner from "../../ui/Spinner";
 
 function CreateCollectionContainer() {
   const {
@@ -13,14 +14,15 @@ function CreateCollectionContainer() {
     image,
     handleUploadImage,
     handleSummit,
+    loading,
   } = useCreateCollectionContext();
   const fileEl = useRef(null);
-
 
   return (
     <div>
       <div className="bg-gray fixed inset-0 opacity-60"></div>
       <div className="bg-white absolute z-10 top-[10%]  right-[30%] left-[30%] rounded-[1.5rem] ">
+        {loading ? <Spinner noBg="true" /> : null}
         <input
           type="file"
           className="hidden"
@@ -77,9 +79,9 @@ function CreateCollectionContainer() {
             ></Input>
           </div>
           <div className="w-[90%] flex flex-col gap-[0.5rem]">
-          <label className="font-semibold" htmlFor="price">
-                Category
-              </label>
+            <label className="font-semibold" htmlFor="price">
+              Category
+            </label>
             <select
               className="border-2 border-gray rounded-2xl p-2 w-full flex items-center gap-2"
               name="categoryId"
@@ -102,6 +104,7 @@ function CreateCollectionContainer() {
                 Price
               </label>
               <Input
+                type="number"
                 name="price"
                 placeholder="Enter Price"
                 onChange={handleChangeInput}

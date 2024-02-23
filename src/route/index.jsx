@@ -14,6 +14,7 @@ import CreatePage from "../pages/CreatePage";
 import ExplorePage from "../pages/ExplorePage";
 import AssetPage from "../pages/AssetPage";
 import CollectionPage from "../pages/CollectionPage";
+import ProtectRoute from "./protectRoute/ProtectRoute";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/setting",
-        element: <SettingPage />,
+        element: (
+          <ProtectRoute>
+            <SettingPage />
+          </ProtectRoute>
+        ),
       },
       {
         path: "/asset/:assetId",

@@ -56,7 +56,6 @@ export default function ProfileContextProvider({ children }) {
         );
       }
 
-      console.log(user.data);
       setUserObj(user.data);
     } catch (err) {
       console.log(err);

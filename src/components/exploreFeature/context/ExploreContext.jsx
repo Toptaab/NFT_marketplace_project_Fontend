@@ -22,7 +22,7 @@ export default function ExploreContextProvider({ children }) {
   const [sortDirection, setSortDirection] = useState(false);
   const [arrowOpen, setArrowOpen] = useState(false);
 
-  console.log(Collection);
+
 
   const getAllAsset = async () => {
     try {
