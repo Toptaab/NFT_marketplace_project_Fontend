@@ -5,6 +5,7 @@ export const FormContext = createContext();
 import { toast } from "react-toastify";
 import validateLogin from "../validator/validate-login";
 import validateRegister from "../validator/validate-register";
+import validateSetting from "../validator/validate-updateSetting";
 
 export default function FormContextProvider({ children }) {
   const [input, setInput] = useState(null);
@@ -13,9 +14,6 @@ export default function FormContextProvider({ children }) {
   const userId = localStorage.getItem('userId')
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-
-  console.log(userId);
 
   const loginApi = async (input) => {
     try {
@@ -73,9 +71,14 @@ export default function FormContextProvider({ children }) {
   };
 
   const updateUserApi = async (input) => {
-    input.email?.trim() === "" ? delete input.email : null;
-    input.userName?.trim() === "" ? delete input.userName : null;
+    input?.email?.trim() === "" ? delete input.email : null;
+    input?.userName?.trim() === "" ? delete input.userName : null;
     try {
+      const validateError = validateSetting({password : input.password})
+      if(validateError){
+        toast.error("Please enter Password")
+        return setError(validateError)
+      }
       
       setLoading(true)
       const accessToken = localStorage.getItem("accessToken");
@@ -113,13 +116,13 @@ export default function FormContextProvider({ children }) {
         console.log(uploadImageResponse.data);
       }
 
-      setInput(null);
-    } catch (err) {
-      console.log(err);
-    }finally{
+
       setLoading(false)
       navigate(`/profile/${userId}`);
       location.reload()
+      setInput(null);
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -140,6 +143,7 @@ export default function FormContextProvider({ children }) {
   };
 
   const updateHandler = (e) => {
+    if(!input){return setError({password: "Please enter password"})}
     e.preventDefault();
     updateUserApi(input);
   };

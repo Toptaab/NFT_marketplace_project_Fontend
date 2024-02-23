@@ -12,9 +12,8 @@ import TextArea from "../../ui/TextArea";
 import Spinner from "../../ui/Spinner";
 
 function SettingContainer() {
-  const {image, changeHandler, input,updateHandler,handleUploadImage,loading } = useFormContext();
+  const {image, changeHandler, input,updateHandler,handleUploadImage,loading,error } = useFormContext();
   const fileEl = useRef(null)
-  console.log(image)
 
 
   if(loading){
@@ -73,7 +72,7 @@ function SettingContainer() {
               </div>
               <div className="flex flex-col gap-[0.5rem]">
                 <label className="text-[14px] font-semibold">Password</label>
-                <Input type="password" onChange={changeHandler} name="password">
+                <Input type="password" onChange={changeHandler} name="password" error={error.password}>
                   <PasswordLockIcon />
                 </Input>
               </div>

@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import useProfileContext from "./hook/userProfileContext";
 import Button from "../../ui/Button";
 import { PlusIcon } from "../../icons";
+import Input from "../../ui/Input";
 
 function UserStatusButton({ handelModal }) {
-  const [depositeOpen, setDepositeOpen] = useState(false);
-  const { userObj, me, bidingWallethandler } = useProfileContext();
-  console.log(depositeOpen)
+  const {changeHandler,  addBalanceHandler, userObj, me, bidingWallethandler,setDepositeOpen,depositeOpen } = useProfileContext();
+  console.log(depositeOpen);
 
   if (userObj?.id === me?.id) {
     return (
@@ -22,12 +22,24 @@ function UserStatusButton({ handelModal }) {
         </div>
         <div className="max-w-[8rem] flex-1">
           {userObj?.Wallets.length > 0 ? (
-            depositeOpen? null: <button
-              className="bg-primary text-wrap p-[0.5rem] rounded-xl text-white font-semibold w-full"
-              onClick={()=>{}}
-            >
-              {userObj?.Wallets[0]?.walletAddress}
-            </button>
+            depositeOpen ? (
+              <div className="flex flex-col gap-[1rem]">
+                {/* <input
+                  type="text"
+                  className="border-2 border-gray rounded-2xl p-2 w-full flex items-center gap-2 relative "
+                  placeholder="Enter Balance"
+                /> */}
+                <Input placeholder="Enter Balance" name="balance" onChange={changeHandler}></Input>
+                <button onClick={addBalanceHandler} className="bg-primary text-wrap p-[0.5rem] rounded-xl text-white font-semibold w-full" >Confirm</button>
+              </div>
+            ) : (
+              <button
+                className="bg-primary text-wrap p-[0.5rem] rounded-xl text-white font-semibold w-full"
+                onClick={() => setDepositeOpen(!depositeOpen)}
+              >
+                {userObj?.Wallets[0]?.walletAddress}
+              </button>
+            )
           ) : (
             <button
               className="bg-primary text-wrap p-[0.5rem] rounded-xl text-white font-semibold w-full"

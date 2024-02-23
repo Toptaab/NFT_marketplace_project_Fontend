@@ -13,7 +13,7 @@ const loginSchema = Joi.object({
     .messages({
       "string.empty": "password is required",
       "string.pattern.base":
-        "password must be at least 6 characters and contain only alphabet and number",
+        "password must be at least 6 ",
       "any.required": "password is required",
     }),
 });

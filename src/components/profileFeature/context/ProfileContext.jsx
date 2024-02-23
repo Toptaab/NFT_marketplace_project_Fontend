@@ -19,6 +19,8 @@ export default function ProfileContextProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [relationShip, setRelationship] = useState(status.UNKHOWN);
   const [me, setMe] = useState(null);
+  const [depositeOpen, setDepositeOpen] = useState(false);
+  const [input, setInput] = useState();
 
   const navigate = useNavigate();
 
@@ -44,7 +46,6 @@ export default function ProfileContextProvider({ children }) {
           Authorization: "Bearer" + " " + accessToken,
         },
       });
-
 
       if (user.data.Wallets.length > 0) {
         user.data.Wallets[0].walletAddress = truncateMiddle(
@@ -73,22 +74,49 @@ export default function ProfileContextProvider({ children }) {
       if (!walletAddress[0]) {
         toast.error("Connect false");
       }
-      console.log(walletAddress)
+      console.log(walletAddress);
 
-      const response = await axios.post('/user/wallet',{
-        walletAddress: walletAddress[0]
-      },{
-        headers: {
-          Authorization: "Bearer" + " " + accessToken,
+      const response = await axios.post(
+        "/user/wallet",
+        {
+          walletAddress: walletAddress[0],
         },
-      }
-      )
-      console.log(response)
-
+        {
+          headers: {
+            Authorization: "Bearer" + " " + accessToken,
+          },
+        }
+      );
+      console.log(response);
     } catch (err) {
       console.log(err);
-    }finally{
+    } finally {
       setLoading(false);
+      location.reload();
+    }
+  };
+
+  const addBalanceApi = async (input) => {
+    try {
+      setLoading(true)
+      const response = await axios.patch(
+        `/user/add`,
+        {
+          balance: input.balance,
+        },
+        {
+          headers: {
+            Authorization: "Bearer" + " " + accessToken,
+          },
+        }
+      );
+
+      console.log(response.data);
+    } catch (err) {
+      console.log(err);
+      
+    }finally{
+      setLoading(false)
       location.reload()
     }
   };
@@ -97,7 +125,15 @@ export default function ProfileContextProvider({ children }) {
     connectWalletApi();
   };
 
+  const addBalanceHandler = () => {
+    addBalanceApi(input);
+    setDepositeOpen(!depositeOpen)
+  };
 
+  const changeHandler = (e) => {
+    console.log(input);
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
 
   useEffect(() => {
     authMe();
@@ -106,12 +142,17 @@ export default function ProfileContextProvider({ children }) {
   return (
     <ProfileContext.Provider
       value={{
+        input,
+        changeHandler,
         userObj,
         loading,
         relationShip,
         status,
         me,
         bidingWallethandler,
+        setDepositeOpen,
+        depositeOpen,
+        addBalanceHandler,
       }}
     >
       {children}
